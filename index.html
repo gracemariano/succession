@@ -6,20 +6,20 @@
   <title>Arkay Succession Planning — Session 6 · May 20, 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ink: #1a1f36;
-      --muted: #4a5568;
-      --sky: #7dd3fc;
-      --coral: #ff6b6b;
-      --sun: #ffd93d;
-      --mint: #6bcb77;
-      --grape: #a78bfa;
-      --peach: #ffb07c;
-      --pink: #ff8fab;
-      --blue: #4dabf7;
-      --lime: #b8e986;
+      --bg: #eef1f6;
+      --surface: #ffffff;
+      --surface-muted: #f8f9fb;
+      --text: #1a2332;
+      --text-muted: #5c6b7f;
+      --border: #d8dee8;
+      --primary: #1e4d8c;
+      --primary-soft: #e8f0fa;
+      --accent: #c45c26;
+      --critical: #b42318;
+      --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 14px rgba(15, 23, 42, 0.05);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,222 +27,172 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: "Nunito", system-ui, sans-serif;
-      font-size: 1.125rem;
-      line-height: 1.65;
-      color: var(--ink);
-      background: linear-gradient(160deg, #e8f4fc 0%, #fff5e6 35%, #f3e8ff 70%, #e6fff0 100%);
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
       min-height: 100vh;
-      overflow-x: hidden;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: radial-gradient(circle at 15% 20%, rgba(255, 107, 107, 0.12) 0%, transparent 40%),
-                        radial-gradient(circle at 85% 15%, rgba(167, 139, 250, 0.15) 0%, transparent 35%),
-                        radial-gradient(circle at 70% 80%, rgba(107, 203, 119, 0.12) 0%, transparent 40%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .page { position: relative; z-index: 1; max-width: 72rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    .page { max-width: 68rem; margin: 0 auto; padding: 2rem 1.25rem 3.5rem; }
 
     header.hero-block {
-      text-align: center;
-      margin-bottom: 2.5rem;
-      padding: 2rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 2rem 1.75rem;
+      margin-bottom: 2rem;
     }
 
     .badge {
       display: inline-block;
-      padding: 0.45rem 1.1rem;
-      background: #fff;
-      border: 3px solid var(--coral);
-      border-radius: 999px;
-      font-size: 0.95rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--coral);
+      color: var(--text-muted);
+      background: var(--surface-muted);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem;
       margin-bottom: 1rem;
-      box-shadow: 0 6px 0 rgba(255, 107, 107, 0.25);
     }
 
     h1 {
-      font-family: "Fredoka", sans-serif;
-      font-size: clamp(2.5rem, 7vw, 4.25rem);
+      font-size: clamp(1.85rem, 4vw, 2.5rem);
       font-weight: 700;
-      line-height: 1.1;
-      color: var(--ink);
-      text-shadow: 3px 3px 0 #fff, 4px 4px 0 rgba(255, 107, 107, 0.35);
+      letter-spacing: -0.02em;
+      color: var(--primary);
+      line-height: 1.2;
     }
 
     .hero-sub {
-      font-size: clamp(1.15rem, 2.5vw, 1.45rem);
-      font-weight: 700;
-      color: var(--muted);
-      margin-top: 0.75rem;
-      max-width: 38rem;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-top: 0.65rem;
+      max-width: 40rem;
     }
 
-  .hero-stats {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1.75rem;
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1.5rem;
     }
 
     .stat-pill {
-      background: #fff;
-      border-radius: 1.25rem;
-      padding: 0.85rem 1.25rem;
-      font-weight: 800;
-      font-size: 1.1rem;
-      box-shadow: 0 8px 0 rgba(0,0,0,0.08), 0 12px 24px rgba(0,0,0,0.06);
-      border: 3px solid transparent;
+      background: var(--surface-muted);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: left;
     }
 
-    .stat-pill .n { font-family: "Fredoka", sans-serif; font-size: 1.65rem; display: block; }
-    .stat-pill.coral { border-color: var(--coral); color: var(--coral); }
-    .stat-pill.sun { border-color: #f59f00; color: #d97706; }
-    .stat-pill.mint { border-color: var(--mint); color: #2d8a3e; }
-    .stat-pill.grape { border-color: var(--grape); color: #7c3aed; }
+    .stat-pill .n {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+      line-height: 1.1;
+    }
+
+    .stat-pill .l {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 0.25rem;
+      display: block;
+    }
+
+    .hint {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
 
     .section-label {
-      font-family: "Fredoka", sans-serif;
-      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-size: 0.78rem;
       font-weight: 700;
-      margin: 2.25rem 0 1rem;
-      padding-left: 0.25rem;
-      color: var(--ink);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 2rem 0 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary);
     }
 
-    .section-label span {
-      display: inline-block;
-      background: #fff;
-      padding: 0.15rem 0.65rem;
-      border-radius: 0.5rem;
-      margin-right: 0.35rem;
-      box-shadow: 0 4px 0 rgba(0,0,0,0.06);
-    }
-
-    .balloon-grid {
+    .tile-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
     }
 
-    .balloon {
-      position: relative;
+    .tile {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 140px;
-      padding: 1.35rem 1.25rem 1.6rem;
-      border: none;
-      border-radius: 50% 50% 50% 50% / 55% 55% 45% 45%;
+      align-items: flex-start;
+      justify-content: space-between;
+      min-height: 110px;
+      padding: 1.1rem 1.15rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      box-shadow: var(--shadow);
       cursor: pointer;
-      font-family: "Fredoka", sans-serif;
-      font-size: clamp(1.15rem, 2.2vw, 1.45rem);
-      font-weight: 600;
-      line-height: 1.25;
-      text-align: center;
-      color: #fff;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.15);
-      box-shadow: 0 12px 0 rgba(0,0,0,0.12), 0 20px 40px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-align: left;
+      font-family: inherit;
+      color: var(--text);
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
       -webkit-tap-highlight-color: transparent;
     }
 
-    .balloon::after {
-      content: "";
-      position: absolute;
-      bottom: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 12px solid transparent;
-      border-right: 12px solid transparent;
-      border-top: 18px solid;
-      border-top-color: inherit;
-      filter: brightness(0.85);
+    .tile:hover, .tile:focus-visible {
+      border-color: var(--primary);
+      box-shadow: 0 4px 16px rgba(30, 77, 140, 0.12);
+      background: var(--primary-soft);
+      outline: none;
     }
 
-    .balloon:hover, .balloon:focus-visible {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 18px 0 rgba(0,0,0,0.1), 0 28px 50px rgba(0,0,0,0.12);
-      outline: 3px solid #fff;
-      outline-offset: 4px;
+    .tile .title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text);
     }
 
-    .balloon:active { transform: translateY(-2px) scale(0.98); }
-
-    .balloon .tap {
-      font-family: "Nunito", sans-serif;
-      font-size: 0.8rem;
-      font-weight: 800;
-      margin-top: 0.5rem;
-      opacity: 0.92;
-      letter-spacing: 0.04em;
+    .tile .meta {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 0.65rem;
       text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
-    .balloon .num {
-      font-size: 2rem;
+    .tile .num {
+      font-size: 1.75rem;
       font-weight: 700;
+      color: var(--primary);
       line-height: 1;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.35rem;
     }
 
-    .balloon.coral { background: linear-gradient(145deg, #ff8787, var(--coral)); border-top-color: #e55555; }
-    .balloon.sun { background: linear-gradient(145deg, #ffe066, var(--sun)); color: #7c4a00; text-shadow: none; border-top-color: #e6c200; }
-    .balloon.mint { background: linear-gradient(145deg, #8ee99a, var(--mint)); border-top-color: #4fa85a; }
-    .balloon.grape { background: linear-gradient(145deg, #c4b5fd, var(--grape)); border-top-color: #8b5cf6; }
-    .balloon.peach { background: linear-gradient(145deg, #ffc9a3, var(--peach)); color: #9a3412; text-shadow: none; border-top-color: #ea580c; }
-    .balloon.pink { background: linear-gradient(145deg, #ffb3c6, var(--pink)); border-top-color: #f472b6; }
-    .balloon.blue { background: linear-gradient(145deg, #74c0fc, var(--blue)); border-top-color: #339af0; }
-    .balloon.sky { background: linear-gradient(145deg, #99e9f2, var(--sky)); color: #0c4a6e; text-shadow: none; border-top-color: #22b8cf; }
-    .balloon.lime { background: linear-gradient(145deg, #d4ed91, #94d82d); color: #3f6212; text-shadow: none; border-top-color: #74b816; }
+    .tile.critical { border-left-color: var(--critical); }
+    .tile.accent { border-left-color: var(--accent); }
+    .tile.wide { grid-column: 1 / -1; min-height: 72px; flex-direction: row; align-items: center; justify-content: space-between; gap: 1rem; }
 
-    .balloon.wide {
-      grid-column: span 1;
-      min-height: 120px;
-      border-radius: 2rem;
-    }
+    .tile.wide .meta { margin-top: 0; }
 
-    .balloon.wide::after { display: none; }
-
-    .hint {
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--grape);
-      margin-top: 2rem;
-      animation: bounce 2s ease-in-out infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-
-    /* Modal / popup balloon */
+    /* Modal panel */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(26, 31, 54, 0.55);
-      backdrop-filter: blur(6px);
+      background: rgba(26, 35, 50, 0.45);
       z-index: 500;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.25s, visibility 0.25s;
+      transition: opacity 0.2s, visibility 0.2s;
     }
 
     .modal-backdrop.open { opacity: 1; visibility: visible; }
@@ -251,17 +201,16 @@
       position: fixed;
       left: 50%;
       top: 50%;
-      transform: translate(-50%, -50%) scale(0.88);
+      transform: translate(-50%, -48%);
       z-index: 600;
-      width: min(92vw, 52rem);
-      max-height: min(88vh, 900px);
-      background: #fff;
-      border-radius: 2rem;
-      border: 5px solid var(--ink);
-      box-shadow: 0 24px 0 rgba(0,0,0,0.15), 0 40px 80px rgba(0,0,0,0.2);
+      width: min(94vw, 52rem);
+      max-height: min(90vh, 880px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.28s, transform 0.28s, visibility 0.28s;
+      transition: opacity 0.22s, transform 0.22s, visibility 0.22s;
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -270,215 +219,177 @@
     .modal-popup.open {
       opacity: 1;
       visibility: visible;
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    .modal-popup::before {
-      content: "";
-      position: absolute;
-      top: -20px;
-      left: 2.5rem;
-      width: 28px;
-      height: 28px;
-      background: inherit;
-      border: 5px solid var(--ink);
-      border-bottom: none;
-      border-right: none;
-      border-radius: 50% 0 0 0;
-      transform: rotate(45deg);
+      transform: translate(-50%, -50%);
     }
 
     .modal-head {
       flex-shrink: 0;
-      padding: 1.35rem 1.5rem 1rem;
-      border-bottom: 4px dashed #e2e8f0;
+      padding: 1.25rem 3rem 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-muted);
     }
 
     .modal-head h2 {
-      font-family: "Fredoka", sans-serif;
-      font-size: clamp(1.65rem, 4vw, 2.25rem);
+      font-size: 1.35rem;
       font-weight: 700;
-      line-height: 1.2;
-      color: var(--ink);
+      color: var(--primary);
+      line-height: 1.3;
     }
 
     .modal-head .eyebrow {
-      font-size: 1rem;
-      font-weight: 800;
+      font-size: 0.72rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--coral);
-      margin-bottom: 0.35rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
     }
 
     .modal-body {
       flex: 1;
       overflow-y: auto;
-      padding: 1.25rem 1.5rem 1.75rem;
-      font-size: 1.15rem;
+      padding: 1.25rem 1.5rem 1.5rem;
+      font-size: 1.05rem;
     }
 
     .modal-close {
       position: absolute;
-      top: 0.85rem;
-      right: 0.85rem;
-      width: 2.75rem;
-      height: 2.75rem;
-      border: 3px solid var(--ink);
-      border-radius: 50%;
-      background: var(--sun);
-      font-size: 1.5rem;
-      font-weight: 800;
+      top: 0.75rem;
+      right: 0.75rem;
+      width: 2.25rem;
+      height: 2.25rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-size: 1.25rem;
       line-height: 1;
+      color: var(--text-muted);
       cursor: pointer;
-      z-index: 10;
-      transition: transform 0.15s;
+      transition: background 0.15s, color 0.15s;
     }
 
-    .modal-close:hover { transform: rotate(90deg) scale(1.08); }
+    .modal-close:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
 
     .modal-body h3 {
-      font-family: "Fredoka", sans-serif;
-      font-size: 1.45rem;
-      color: #7c3aed;
-      margin: 1.25rem 0 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 1.15rem 0 0.45rem;
     }
 
     .modal-body h3:first-child { margin-top: 0; }
 
-    .modal-body ul { margin: 0.5rem 0 1rem 1.35rem; }
-    .modal-body li { margin-bottom: 0.55rem; font-weight: 600; }
-    .modal-body p { margin-bottom: 0.75rem; font-weight: 600; }
+    .modal-body ul { margin: 0.4rem 0 0.85rem 1.25rem; }
+    .modal-body li { margin-bottom: 0.45rem; }
+    .modal-body p { margin-bottom: 0.65rem; }
 
-    .hl { color: #dc2626; font-weight: 800; }
+    .hl { color: var(--accent); font-weight: 600; }
 
     .tag {
       display: inline-block;
-      font-size: 0.85rem;
-      font-weight: 800;
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
       margin-bottom: 0.5rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      border: 1px solid var(--border);
     }
 
-    .tag.p0 { background: #fecaca; color: #b91c1c; }
-    .tag.p1 { background: #fef08a; color: #a16207; }
-    .tag.p2 { background: #bbf7d0; color: #15803d; }
-    .tag.p3 { background: #ddd6fe; color: #6d28d9; }
+    .tag.p0 { background: #fef2f2; color: var(--critical); border-color: #fecaca; }
+    .tag.p1 { background: #fffbeb; color: #92400e; border-color: #fde68a; }
+    .tag.p2 { background: #f0fdf4; color: #166534; border-color: #bbf7d0; }
+    .tag.p3 { background: var(--primary-soft); color: var(--primary); border-color: #bfdbfe; }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 1.05rem;
-      margin: 0.75rem 0 1.25rem;
+      font-size: 0.98rem;
+      margin: 0.5rem 0 1rem;
     }
 
     th, td {
       text-align: left;
-      padding: 0.85rem 0.75rem;
-      border-bottom: 3px solid #f1f5f9;
+      padding: 0.7rem 0.65rem;
+      border-bottom: 1px solid var(--border);
       vertical-align: top;
     }
 
     th {
-      font-size: 0.9rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      color: var(--grape);
-      font-weight: 800;
+      color: var(--text-muted);
+      font-weight: 600;
+      background: var(--surface-muted);
     }
 
-    td strong { color: var(--ink); }
+    td strong { color: var(--text); font-weight: 600; }
 
-    .actions-table td:nth-child(3) { color: #0891b2; font-weight: 800; white-space: nowrap; }
-
-    .priority-block {
-      background: linear-gradient(135deg, #fff7ed, #fff);
-      border: 3px solid #fed7aa;
-      border-radius: 1.25rem;
-      padding: 1.1rem 1.2rem;
-      margin-bottom: 1rem;
-    }
-
-    .priority-block h3 {
-      font-family: "Fredoka", sans-serif;
-      font-size: 1.35rem;
-      color: var(--ink);
-      margin: 0.35rem 0 0.5rem;
-    }
+    .actions-table td:nth-child(3) { color: var(--primary); font-weight: 600; white-space: nowrap; font-size: 0.9rem; }
 
     .owner-block {
-      background: #f0f9ff;
-      border: 3px solid #7dd3fc;
-      border-radius: 1.25rem;
-      padding: 1rem 1.15rem;
-      margin-bottom: 1rem;
+      background: var(--surface-muted);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      margin-bottom: 0.75rem;
     }
 
     .owner-block h3 {
-      font-family: "Fredoka", sans-serif;
-      font-size: 1.3rem;
-      color: #0369a1;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
       margin-bottom: 0.5rem;
     }
 
-    .metric-row {
-      display: grid;
-      gap: 0.75rem;
-      margin-bottom: 0.85rem;
-    }
+    .metric-row { display: grid; gap: 0.65rem; }
 
     .metric-card {
-      background: #f8fafc;
-      border-left: 6px solid var(--blue);
-      border-radius: 0.75rem;
-      padding: 0.9rem 1rem;
+      background: var(--surface-muted);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      padding: 0.85rem 1rem;
     }
 
     .metric-card .label {
-      font-size: 0.9rem;
-      font-weight: 800;
+      font-size: 0.72rem;
+      font-weight: 600;
       text-transform: uppercase;
-      color: var(--muted);
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
     }
 
     .metric-card .val {
-      font-family: "Fredoka", sans-serif;
-      font-size: 1.35rem;
-      color: var(--ink);
-      margin-top: 0.2rem;
-    }
-
-    .metric-card .sub { font-size: 1rem; color: #0891b2; font-weight: 700; margin-top: 0.25rem; }
-
-    .alert-box {
-      background: #fff1f2;
-      border: 3px solid var(--coral);
-      border-radius: 1rem;
-      padding: 1rem 1.15rem;
       font-size: 1.15rem;
       font-weight: 700;
-      margin-top: 1rem;
+      color: var(--text);
+      margin-top: 0.15rem;
+    }
+
+    .metric-card .sub { font-size: 0.92rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+    .alert-box {
+      background: #fff8f5;
+      border: 1px solid #f5d0c4;
+      border-left: 4px solid var(--accent);
+      padding: 0.9rem 1rem;
+      font-size: 1rem;
+      margin-top: 0.85rem;
     }
 
     .footer-note {
       text-align: center;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--muted);
-      margin-top: 3rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 2.5rem;
     }
 
     @media (max-width: 520px) {
-      .balloon-grid { grid-template-columns: 1fr 1fr; gap: 0.85rem; }
-      .balloon { min-height: 120px; font-size: 1.05rem; padding: 1rem 0.75rem 1.35rem; }
-      .modal-body { font-size: 1.05rem; }
+      .tile-grid { grid-template-columns: 1fr; }
+      .tile.wide { flex-direction: column; align-items: flex-start; }
     }
 
     @media print {
-      .modal-backdrop, .modal-popup, .balloon { display: none; }
+      .modal-backdrop, .modal-popup { display: none; }
     }
   </style>
 </head>
@@ -487,59 +398,59 @@
   <div class="page">
     <header class="hero-block">
       <span class="badge">Confidential · Succession Planning</span>
-      <h1>Session 6<br />Meeting Notes</h1>
-      <p class="hero-sub">May 20, 2026 — tap any balloon to open the full update. Next session: <span class="hl">June 23, 2026</span>.</p>
+      <h1>Session 6 Meeting Notes</h1>
+      <p class="hero-sub">May 20, 2026 — select a topic below to view full details. Next session: <span class="hl">June 23, 2026</span>.</p>
       <div class="hero-stats">
-        <div class="stat-pill coral"><span class="n">+$6–7M</span>Revenue ahead</div>
-        <div class="stat-pill sun"><span class="n">~20%</span>Bookings YoY</div>
-        <div class="stat-pill mint"><span class="n">$60K</span>OT / week</div>
-        <div class="stat-pill grape"><span class="n">48 hr</span>Schedule lock</div>
+        <div class="stat-pill"><span class="n">+$6–7M</span><span class="l">Revenue ahead</span></div>
+        <div class="stat-pill"><span class="n">~20%</span><span class="l">Bookings YoY</span></div>
+        <div class="stat-pill"><span class="n">$60K</span><span class="l">OT per week</span></div>
+        <div class="stat-pill"><span class="n">48 hr</span><span class="l">Schedule lock</span></div>
       </div>
     </header>
 
-    <p class="hint">👆 Tap a balloon to read the full content</p>
+    <p class="hint">Click any square to open the full notes for that subject.</p>
 
-    <h2 class="section-label"><span>①</span> Overview</h2>
-    <div class="balloon-grid">
-      <button type="button" class="balloon coral wide" data-modal="modal-overview" aria-haspopup="dialog">
-        Session 6 Summary
-        <span class="tap">Tap to open</span>
+    <h2 class="section-label">Overview</h2>
+    <div class="tile-grid">
+      <button type="button" class="tile wide" data-modal="modal-overview" aria-haspopup="dialog">
+        <span class="title">Session 6 Executive Summary</span>
+        <span class="meta">View details →</span>
       </button>
     </div>
 
-    <h2 class="section-label"><span>②</span> Top priorities (tap each)</h2>
-    <div class="balloon-grid">
-      <button type="button" class="balloon coral" data-modal="modal-p1"><span class="num">1</span>48-hr schedule lock<span class="tap">Tap</span></button>
-      <button type="button" class="balloon sun" data-modal="modal-p2"><span class="num">2</span>Overtime &amp; shifts<span class="tap">Tap</span></button>
-      <button type="button" class="balloon grape" data-modal="modal-p3"><span class="num">3</span>Mgmt meeting format<span class="tap">Tap</span></button>
-      <button type="button" class="balloon peach" data-modal="modal-p4"><span class="num">4</span>Rates review Sep 1<span class="tap">Tap</span></button>
-      <button type="button" class="balloon blue" data-modal="modal-p5"><span class="num">5</span>ERP / AI decisions<span class="tap">Tap</span></button>
-      <button type="button" class="balloon mint" data-modal="modal-p6"><span class="num">6</span>Make-ready &amp; SOPs<span class="tap">Tap</span></button>
-      <button type="button" class="balloon pink" data-modal="modal-p7"><span class="num">7</span>Sales &amp; huddles<span class="tap">Tap</span></button>
-      <button type="button" class="balloon sky" data-modal="modal-p8"><span class="num">8</span>Succession staffing<span class="tap">Tap</span></button>
+    <h2 class="section-label">Top priorities</h2>
+    <div class="tile-grid">
+      <button type="button" class="tile critical" data-modal="modal-p1"><span class="num">1</span><span class="title">48-hour schedule lock</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile critical" data-modal="modal-p2"><span class="num">2</span><span class="title">Overtime &amp; shift coverage</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile" data-modal="modal-p3"><span class="num">3</span><span class="title">Management meeting format</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile" data-modal="modal-p4"><span class="num">4</span><span class="title">Rates review · Sep 1</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile" data-modal="modal-p5"><span class="num">5</span><span class="title">ERP / AI decisions</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile" data-modal="modal-p6"><span class="num">6</span><span class="title">Make-ready &amp; SOPs</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile" data-modal="modal-p7"><span class="num">7</span><span class="title">Sales &amp; weekly huddles</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile" data-modal="modal-p8"><span class="num">8</span><span class="title">Succession &amp; staffing</span><span class="meta">View details →</span></button>
     </div>
 
-    <h2 class="section-label"><span>③</span> Action items</h2>
-    <div class="balloon-grid">
-      <button type="button" class="balloon coral" data-modal="modal-actions-p0">P0 · Today / ASAP<span class="tap">Tap</span></button>
-      <button type="button" class="balloon sun" data-modal="modal-actions-p1">P1 · This week<span class="tap">Tap</span></button>
-      <button type="button" class="balloon mint" data-modal="modal-actions-p2">P2 · June cycle<span class="tap">Tap</span></button>
-      <button type="button" class="balloon grape" data-modal="modal-actions-p3">P3 · Ongoing<span class="tap">Tap</span></button>
-      <button type="button" class="balloon blue wide" data-modal="modal-register">All actions by owner<span class="tap">Tap</span></button>
+    <h2 class="section-label">Action items</h2>
+    <div class="tile-grid">
+      <button type="button" class="tile critical" data-modal="modal-actions-p0"><span class="title">P0 · Today / ASAP</span><span class="meta">4 items →</span></button>
+      <button type="button" class="tile accent" data-modal="modal-actions-p1"><span class="title">P1 · This week</span><span class="meta">8 items →</span></button>
+      <button type="button" class="tile" data-modal="modal-actions-p2"><span class="title">P2 · June cycle</span><span class="meta">7 items →</span></button>
+      <button type="button" class="tile" data-modal="modal-actions-p3"><span class="title">P3 · Ongoing</span><span class="meta">9 items →</span></button>
+      <button type="button" class="tile wide" data-modal="modal-register"><span class="title">All actions by owner</span><span class="meta">Full register →</span></button>
     </div>
 
-    <h2 class="section-label"><span>④</span> Themes &amp; data</h2>
-    <div class="balloon-grid">
-      <button type="button" class="balloon sun" data-modal="modal-metrics">Key metrics<span class="tap">Tap</span></button>
-      <button type="button" class="balloon grape" data-modal="modal-decisions">Major decisions<span class="tap">Tap</span></button>
-      <button type="button" class="balloon coral" data-modal="modal-operations">Operations &amp; OT<span class="tap">Tap</span></button>
-      <button type="button" class="balloon peach" data-modal="modal-production">Production<span class="tap">Tap</span></button>
-      <button type="button" class="balloon pink" data-modal="modal-sales">Sales &amp; pipeline<span class="tap">Tap</span></button>
-      <button type="button" class="balloon blue" data-modal="modal-technology">ERP / AI / Tech<span class="tap">Tap</span></button>
-      <button type="button" class="balloon mint" data-modal="modal-people">People &amp; succession<span class="tap">Tap</span></button>
-      <button type="button" class="balloon lime" data-modal="modal-finance">Finance &amp; benefits<span class="tap">Tap</span></button>
-      <button type="button" class="balloon coral" data-modal="modal-risks">Risks &amp; watch list<span class="tap">Tap</span></button>
-      <button type="button" class="balloon sky" data-modal="modal-calendar">Upcoming dates<span class="tap">Tap</span></button>
+    <h2 class="section-label">Themes &amp; data</h2>
+    <div class="tile-grid">
+      <button type="button" class="tile" data-modal="modal-metrics"><span class="title">Key metrics</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile" data-modal="modal-decisions"><span class="title">Major decisions</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile" data-modal="modal-operations"><span class="title">Operations &amp; overtime</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile" data-modal="modal-production"><span class="title">Production &amp; make-ready</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile" data-modal="modal-sales"><span class="title">Sales &amp; pipeline</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile" data-modal="modal-technology"><span class="title">ERP / AI / technology</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile" data-modal="modal-people"><span class="title">People &amp; succession</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile" data-modal="modal-finance"><span class="title">Finance &amp; benefits</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile accent" data-modal="modal-risks"><span class="title">Risks &amp; watch list</span><span class="meta">View details →</span></button>
+      <button type="button" class="tile" data-modal="modal-calendar"><span class="title">Upcoming dates</span><span class="meta">View details →</span></button>
     </div>
 
     <p class="footer-note">Arkay Packaging · Succession Planning Session 6 · May 20, 2026 · Confidential</p>
@@ -1005,8 +916,7 @@
 
   <script>
     const backdrop = document.getElementById("backdrop");
-    const balloons = document.querySelectorAll(".balloon[data-modal]");
-    const modals = document.querySelectorAll(".modal-popup");
+    const tiles = document.querySelectorAll(".tile[data-modal]");
     let activeModal = null;
 
     function openModal(id) {
@@ -1031,7 +941,7 @@
       document.body.style.overflow = "";
     }
 
-    balloons.forEach((btn) => {
+    tiles.forEach((btn) => {
       btn.addEventListener("click", () => openModal(btn.getAttribute("data-modal")));
     });
 

@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arkay Succession Planning — Session 6 · May 20, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0e12;
+      --panel: #141a22;
+      --card: #1c2430;
+      --ink: #f0f2f5;
+      --muted: #8a96a8;
+      --accent: #e85d2c;
+      --accent-soft: #ff8a5c;
+      --teal: #3d9ea9;
+      --lime: #7bc67e;
+      --warn: #f0b429;
+      --danger: #e85d2c;
+      --border: rgba(255,255,255,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    .progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--teal));
+      z-index: 200;
+    }
+
+    .snap-section {
+      min-height: 100vh;
+      min-height: 100dvh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4.5rem clamp(1.25rem, 4vw, 5rem);
+      position: relative;
+    }
+
+    .snap-section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 10% 20%, rgba(232, 93, 44, 0.08), transparent 55%),
+                  radial-gradient(ellipse 50% 40% at 95% 85%, rgba(61, 158, 169, 0.06), transparent 50%);
+      pointer-events: none;
+    }
+
+    .snap-section > * { position: relative; z-index: 1; }
+    .snap-section.tall { justify-content: flex-start; padding-top: 5rem; padding-bottom: 3rem; }
+
+    h1, h2, h3 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; }
+    h1.display { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.05; }
+    h2.title { font-size: clamp(1.85rem, 3.8vw, 2.75rem); color: var(--accent-soft); margin-bottom: 0.35rem; }
+
+    .eyebrow {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+    }
+
+    .lede { color: var(--muted); font-size: 1.05rem; max-width: 42rem; margin-top: 0.5rem; }
+
+    nav.dots {
+      position: fixed; right: 1rem; top: 50%; transform: translateY(-50%);
+      z-index: 100; display: flex; flex-direction: column; gap: 0.4rem;
+    }
+
+    nav.dots a {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    nav.dots a.active, nav.dots a:hover {
+      background: var(--accent); transform: scale(1.35);
+      box-shadow: 0 0 10px rgba(232, 93, 44, 0.45);
+    }
+
+    nav.dots a span { display: none; }
+
+    .badge {
+      display: inline-block; padding: 0.3rem 0.85rem;
+      border: 1px solid rgba(232, 93, 44, 0.45); border-radius: 999px;
+      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent-soft); margin-bottom: 1.25rem;
+    }
+
+    .priority-banner {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1.75rem;
+    }
+
+    .priority-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    .priority-item.p0 { border-left-color: var(--danger); }
+    .priority-item.p1 { border-left-color: var(--warn); }
+    .priority-item.p2 { border-left-color: var(--teal); }
+
+    .priority-num {
+      font-family: "Instrument Serif", serif;
+      font-size: 1.75rem;
+      color: var(--accent-soft);
+      line-height: 1;
+      min-width: 2rem;
+    }
+
+    .priority-item h3 {
+      font-size: 1.05rem;
+      color: var(--ink);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .priority-item p { font-size: 0.88rem; color: rgba(240,242,245,0.85); }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.35rem;
+    }
+
+    .tag.p0 { background: rgba(232, 93, 44, 0.2); color: var(--accent-soft); }
+    .tag.p1 { background: rgba(240, 180, 41, 0.15); color: var(--warn); }
+    .tag.p2 { background: rgba(61, 158, 169, 0.2); color: var(--teal); }
+    .tag.p3 { background: rgba(123, 198, 126, 0.15); color: var(--lime); }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.85rem;
+      margin-top: 1.75rem;
+    }
+
+    .metric {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.15rem;
+    }
+
+    .metric .label {
+      font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--muted); margin-bottom: 0.35rem;
+    }
+
+    .metric .val { font-size: 1.05rem; font-weight: 600; color: var(--ink); }
+    .metric .sub { font-size: 0.82rem; color: var(--teal); margin-top: 0.35rem; }
+
+    .num-hero {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--accent-soft);
+      line-height: 1.1;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.4rem;
+      margin-top: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      color: var(--accent-soft);
+      margin-bottom: 0.6rem;
+      font-family: "Instrument Serif", serif;
+    }
+
+    .card ul { margin-left: 1.1rem; }
+    .card li { margin-bottom: 0.45rem; font-size: 0.92rem; color: rgba(240,242,245,0.9); }
+    .card p { font-size: 0.92rem; color: rgba(240,242,245,0.88); }
+
+    .hl { color: var(--accent-soft); font-weight: 600; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 0.75rem 0.9rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--accent);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    td { color: rgba(240,242,245,0.92); }
+    td strong { color: var(--ink); font-weight: 600; }
+
+    .actions-table td:first-child { white-space: nowrap; width: 22%; }
+    .actions-table td:nth-child(3) { white-space: nowrap; width: 14%; color: var(--teal); font-size: 0.8rem; }
+
+    .stat-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 2.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .stat-strip .item .n {
+      font-family: "Instrument Serif", serif;
+      font-size: 2rem;
+      color: var(--accent-soft);
+      line-height: 1;
+    }
+
+    .stat-strip .item .d {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      max-width: 11rem;
+    }
+
+    .alert-box {
+      border-left: 3px solid var(--danger);
+      padding: 0.85rem 1rem;
+      background: rgba(232, 93, 44, 0.1);
+      border-radius: 0 8px 8px 0;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-note {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      animation: fade 2s ease-in-out infinite;
+    }
+
+    @keyframes fade {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 1; }
+    }
+
+    .wrap { max-width: 72rem; width: 100%; }
+    .wrap-narrow { max-width: 56rem; width: 100%; }
+
+    .owner-group { margin-top: 1.5rem; }
+    .owner-group h3 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 640px) {
+      nav.dots { display: none; }
+      .actions-table { font-size: 0.78rem; }
+    }
+
+    @media print {
+      nav.dots, .progress-bar { display: none; }
+      .snap-section { min-height: auto; page-break-after: always; }
+      html { scroll-snap-type: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar" id="progressBar"></div>
+
+  <nav class="dots" aria-label="Sections">
+    <a href="#hero" title="Cover"></a>
+    <a href="#priorities" title="Priorities"></a>
+    <a href="#actions" title="Actions"></a>
+    <a href="#metrics" title="Metrics"></a>
+    <a href="#decisions" title="Decisions"></a>
+    <a href="#operations" title="Operations"></a>
+    <a href="#production" title="Production"></a>
+    <a href="#sales" title="Sales"></a>
+    <a href="#technology" title="Technology"></a>
+    <a href="#people" title="People"></a>
+    <a href="#finance" title="Finance"></a>
+    <a href="#risks" title="Risks"></a>
+    <a href="#calendar" title="Calendar"></a>
+    <a href="#register" title="Full register"></a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="snap-section">
+    <div class="wrap-narrow">
+      <span class="badge">Confidential · Succession Planning</span>
+      <p class="eyebrow">Arkay Packaging</p>
+      <h1 class="display">Session 6<br />Meeting Notes</h1>
+      <p class="lede">May 20, 2026 — operational strain, succession execution, ERP/AI decisions, and profitability discipline. Next session: <span class="hl">June 23, 2026</span>.</p>
+      <div class="stat-strip">
+        <div class="item"><div class="n">+$6–7M</div><div class="d">Revenue ahead of prior year</div></div>
+        <div class="item"><div class="n">~20%</div><div class="d">Bookings ahead YoY</div></div>
+        <div class="item"><div class="n">$60K</div><div class="d">Overtime per week</div></div>
+        <div class="item"><div class="n">48 hr</div><div class="d">Schedule lock experiment</div></div>
+      </div>
+      <div class="alert-box" style="margin-top: 1.5rem;">
+        <strong>Central tension:</strong> Strong revenue and bookings, but ~$60K/week overtime is eroding profitability and exhausting the workforce. Senior leadership must listen more and push ownership to department managers.
+      </div>
+      <p class="scroll-hint">Scroll ↓</p>
+    </div>
+  </section>
+
+  <!-- TOP PRIORITIES -->
+  <section id="priorities" class="snap-section tall">
+    <div class="wrap-narrow">
+      <p class="eyebrow">Priority order</p>
+      <h2 class="title">What Matters Most</h2>
+      <p class="lede">Ranked by urgency and impact from Session 6 — tackle top-down.</p>
+      <div class="priority-banner">
+        <div class="priority-item p0">
+          <span class="priority-num">1</span>
+          <div>
+            <span class="tag p0">Critical · Now</span>
+            <h3>Stop schedule churn — 48-hour locked production schedule</h3>
+            <p>Rolling lock with clear exceptions (press failure, true emergencies). Quantify hidden lost hours from last-minute changes. Bell system go-live Tuesday after toolbox briefings.</p>
+          </div>
+        </div>
+        <div class="priority-item p0">
+          <span class="priority-num">2</span>
+          <div>
+            <span class="tag p0">Critical · People</span>
+            <h3>Address overtime burnout and shift coverage</h3>
+            <p>~$60K/week OT from oversold conditions, training, vacations, proofing, and churn. Managers present rotation options (8/12-hour, weekends) before June management meeting.</p>
+          </div>
+        </div>
+        <div class="priority-item p1">
+          <span class="priority-num">3</span>
+          <div>
+            <span class="tag p1">High · Leadership</span>
+            <h3>Change management meeting format</h3>
+            <p>Give department leaders time to present challenges, make-ready progress, ideas, and resource needs. Senior team asks questions and listens — avoid rescuing or dominating.</p>
+          </div>
+        </div>
+        <div class="priority-item p1">
+          <span class="priority-num">4</span>
+          <div>
+            <span class="tag p1">High · Profitability</span>
+            <h3>Rates &amp; standards review — September 1 go-live</h3>
+            <p>First machine-rate reset in ~20 years. Annual review cadence. Improve estimating, cost allocation, and profitable work selection when capacity is constrained.</p>
+          </div>
+        </div>
+        <div class="priority-item p1">
+          <span class="priority-num">5</span>
+          <div>
+            <span class="tag p1">High · Technology</span>
+            <h3>Decouple ERP/AI decisions — smaller decision group</h3>
+            <p>Replace broad ERP steering with focused AI/ERP meeting (Mitchell, Max, Michael, Greg Pandolfi, Hector). Separate streams: ERP strategy, quick wins, ESKO/Phoenix, AMS/HubSpot, automation.</p>
+          </div>
+        </div>
+        <div class="priority-item p2">
+          <span class="priority-num">6</span>
+          <div>
+            <span class="tag p2">Important · Operations</span>
+            <h3>Pit-stop make-ready &amp; repeat-job SOPs</h3>
+            <p>Managers show make-ready before/after and needed tools. Glue-line variance reports drive priority documentation. Inline embossing demo July 27 Roanoke week.</p>
+          </div>
+        </div>
+        <div class="priority-item p2">
+          <span class="priority-num">7</span>
+          <div>
+            <span class="tag p2">Important · Sales</span>
+            <h3>Pipeline quality over volume — weekly cross-functional huddle</h3>
+            <p>Josh leads sales meeting + huddles (CS, planning, imaging, structural, estimating, HR). HubSpot proceeds; align marketing spend with oversold capacity.</p>
+          </div>
+        </div>
+        <div class="priority-item p2">
+          <span class="priority-num">8</span>
+          <div>
+            <span class="tag p2">Important · Succession</span>
+            <h3>Staffing risks: estimators, stamping/embossing, Suzanne transition</h3>
+            <p>Estimator opening on LinkedIn. Stamping/embossing top health/age risk. Max deeper in negotiations (30 days). Suzanne to sales Aug/Sep after CS backfill.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTION ITEMS (PRIORITY ORDER) -->
+  <section id="actions" class="snap-section tall">
+    <div class="wrap">
+      <p class="eyebrow">Action items · priority order</p>
+      <h2 class="title">Action Register</h2>
+      <p class="lede">Sorted by timing urgency — P0 first, then this week, then June cycle and ongoing.</p>
+
+      <div class="card" style="margin-top: 1.25rem;">
+        <h3><span class="tag p0">P0</span> Today / ASAP</h3>
+        <table class="actions-table">
+          <thead><tr><th>Owner</th><th>Action</th><th>Timing</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Mitchell</strong></td>
+              <td>Coordinate legal signoffs for Copilot/Plaud/recording tools with Greg/Todd; ensure releases executed.</td>
+              <td>Today</td>
+            </tr>
+            <tr>
+              <td><strong>Mitchell</strong></td>
+              <td>Contact Grace Williams one last time on fourth-generation narrative; remove if no response.</td>
+              <td>Before next review</td>
+            </tr>
+            <tr>
+              <td><strong>Robin</strong></td>
+              <td>Post estimator opening on LinkedIn; coordinate reposting/amplification.</td>
+              <td>Today</td>
+            </tr>
+            <tr>
+              <td><strong>John</strong></td>
+              <td>Send Marsh McLennan / 3R proposal to Michael; confirm separate report completion with Anthony before removing from list.</td>
+              <td>ASAP</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3><span class="tag p1">P1</span> This week · Tuesday go-live</h3>
+        <table class="actions-table">
+          <thead><tr><th>Owner</th><th>Action</th><th>Timing</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>John</strong></td>
+              <td>Brief managers and employees on bell system purpose in toolbox meetings; go live Tuesday and monitor.</td>
+              <td>Tuesday</td>
+            </tr>
+            <tr>
+              <td><strong>Max</strong></td>
+              <td>Coordinate smaller AI/ERP decision meeting with Mitchell, Michael, Greg Pandolfi, Hector; cancel or repurpose broad ERP steering meeting.</td>
+              <td>Next Tuesday</td>
+            </tr>
+            <tr>
+              <td><strong>Josh</strong></td>
+              <td>Launch weekly huddle — CS, planning, sales, imaging, structural design, estimating, HR, remote participation.</td>
+              <td>Next week</td>
+            </tr>
+            <tr>
+              <td><strong>Josh</strong></td>
+              <td>Escalate ESKO/Phoenix AI estimating with appropriate senior contacts.</td>
+              <td>This week</td>
+            </tr>
+            <tr>
+              <td><strong>Josh</strong></td>
+              <td>Email Steve (or owner) for QR/dynamic coding cost adder and sales guidance.</td>
+              <td>After sales meeting</td>
+            </tr>
+            <tr>
+              <td><strong>Max</strong></td>
+              <td>Coordinate ESKO/WebCenter/RDOS upgrade follow-ups with imaging/technical team input.</td>
+              <td>This week / next</td>
+            </tr>
+            <tr>
+              <td><strong>John</strong></td>
+              <td>Continue glue-line shift manager/supervisor search and stamping/embossing staffing plan.</td>
+              <td>7–10 days</td>
+            </tr>
+            <tr>
+              <td><strong>Michael</strong></td>
+              <td>Present HSA transition to managers; coordinate employee communications with Donna.</td>
+              <td>Next 10 days</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3><span class="tag p2">P2</span> Before June meeting / June cycle</h3>
+        <table class="actions-table">
+          <thead><tr><th>Owner</th><th>Action</th><th>Timing</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>John</strong></td>
+              <td>Prepare management meeting agenda with time for departments to present challenges, improvements, make-ready progress, and resource needs.</td>
+              <td>June mgmt</td>
+            </tr>
+            <tr>
+              <td><strong>John + Robin</strong></td>
+              <td>Develop shift/weekend rotation options that reduce exhaustion while maintaining delivery commitments.</td>
+              <td>Before June</td>
+            </tr>
+            <tr>
+              <td><strong>Mitchell + Michael</strong></td>
+              <td>Draft budget for two annual retreats; evaluate facilitator options with Robin. Trish following up for ideas, speaker, and cost.</td>
+              <td>June cycle</td>
+            </tr>
+            <tr>
+              <td><strong>Josh</strong></td>
+              <td>Negotiate Dark Room scope/pricing toward ~$8K–$9K/month for LinkedIn and SEO/AIO; hold creator management for later.</td>
+              <td>Before approval</td>
+            </tr>
+            <tr>
+              <td><strong>Max</strong></td>
+              <td>Obtain all-in CERM and HighFlow costs — change orders, annual costs, support, internal staffing.</td>
+              <td>Before ERP decision</td>
+            </tr>
+            <tr>
+              <td><strong>Max + Hector</strong></td>
+              <td>Review HubSpot integration with AMS; decide whether to integrate immediately.</td>
+              <td>Before launch</td>
+            </tr>
+            <tr>
+              <td><strong>Robin</strong></td>
+              <td>Finalize July development conversation process with a name that does not imply compensation review.</td>
+              <td>Before July</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3><span class="tag p3">P3</span> Ongoing · 30+ days</h3>
+        <table class="actions-table">
+          <thead><tr><th>Owner</th><th>Action</th><th>Timing</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Mitchell</strong></td>
+              <td>Continue monitoring robotics/autonomous systems; revisit gluer-end palletizing robotics plan.</td>
+              <td>Ongoing</td>
+            </tr>
+            <tr>
+              <td><strong>Max</strong></td>
+              <td>Become more involved in price negotiations within 30 days; continue Roanoke immersion (complex jobs, estimating, Excel).</td>
+              <td>30 days</td>
+            </tr>
+            <tr>
+              <td><strong>Robin</strong></td>
+              <td>Complete career-path documentation with managers; begin employee confirmations. SurveyMonkey exits, talent sheets, pressroom pay scale, Dale Carnegie coordination.</td>
+              <td>Next 30 days</td>
+            </tr>
+            <tr>
+              <td><strong>Robin</strong></td>
+              <td>Schedule Dale Carnegie and Q4/Q1 public speaking course for Josh and Max.</td>
+              <td>Late summer / Q4–Q1</td>
+            </tr>
+            <tr>
+              <td><strong>Michael</strong></td>
+              <td>Tabulate bank responses and appraisal; present financing options and recommendation.</td>
+              <td>After appraisal (2–3 wk)</td>
+            </tr>
+            <tr>
+              <td><strong>Michael</strong></td>
+              <td>Continue rates and standards review with Robert; target September 1 go-live and annual cadence.</td>
+              <td>Ongoing → Sep 1</td>
+            </tr>
+            <tr>
+              <td><strong>Michael</strong></td>
+              <td>Continue 401(k) audit catch-up (2024 then 2025) and healthcare renewal planning with Marsh McLennan.</td>
+              <td>Next 30 days</td>
+            </tr>
+            <tr>
+              <td><strong>Brian + Max + John</strong></td>
+              <td>Plan July 27 Roanoke week: Mike Sanctuary glue-line tools, make-ready videos, inline embossing demo, IT support.</td>
+              <td>Before July 27</td>
+            </tr>
+            <tr>
+              <td><strong>Walt</strong></td>
+              <td>Prepare Heidi conversation for Suzanne transition; support Q3/Q4 P&amp;G pipeline and knowledge capture.</td>
+              <td>July / ongoing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section id="metrics" class="snap-section tall">
+    <div class="wrap">
+      <p class="eyebrow">Key numbers</p>
+      <h2 class="title">Metrics &amp; Benchmarks</h2>
+      <div class="metrics-grid">
+        <div class="metric">
+          <div class="label">Revenue / bookings</div>
+          <div class="val">+$6M–$7M vs. prior year</div>
+          <div class="sub">~20% ahead YoY bookings (down from ~25% prior recap)</div>
+        </div>
+        <div class="metric">
+          <div class="label">Overtime</div>
+          <div class="val">~$60,000 / week</div>
+          <div class="sub">Oversold, training, vacations, proofing, schedule churn</div>
+        </div>
+        <div class="metric">
+          <div class="label">Backlog</div>
+          <div class="val">82 job bags (Roanoke)</div>
+          <div class="sub">Customer-driven schedule changes causing disruption</div>
+        </div>
+        <div class="metric">
+          <div class="label">May billing push</div>
+          <div class="val">$7.5M month target</div>
+          <div class="sub">~$3.4–$3.5M billed; ~$4–$4.5M remaining at discussion</div>
+        </div>
+        <div class="metric">
+          <div class="label">Production examples</div>
+          <div class="val">145K sheets (prior night)</div>
+          <div class="sub">Prior week: ~7.5M cards glue line; &gt;1.2M printing; glue ~1.5–1.6M</div>
+        </div>
+        <div class="metric">
+          <div class="label">2023 peak reference</div>
+          <div class="val">$83.4M sales</div>
+          <div class="sub">Capacity analysis: carton volume &amp; shifts, not dollars alone</div>
+        </div>
+        <div class="metric">
+          <div class="label">Acquisition path</div>
+          <div class="val">$20M–$30M investment/debt</div>
+          <div class="sub">If pursued</div>
+        </div>
+        <div class="metric">
+          <div class="label">ERP PM / AI consultant</div>
+          <div class="val">~$100K / 18 mo (~$225/hr)</div>
+          <div class="sub">Dmitri/Ivan full partnership ~$125K/month discussed</div>
+        </div>
+        <div class="metric">
+          <div class="label">Marketing (Dark Room)</div>
+          <div class="val">~$12K/mo proposed</div>
+          <div class="sub">Target negotiate ~$8K–$9K for LinkedIn + SEO/AIO</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DECISIONS -->
+  <section id="decisions" class="snap-section tall">
+    <div class="wrap">
+      <p class="eyebrow">Alignments</p>
+      <h2 class="title">Major Decisions</h2>
+      <table>
+        <thead><tr><th>Decision</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Serialization ownership</strong></td>
+            <td>Keep in Finishing / Mike’s team — operators cross-trained on QR, window machine, gluer.</td>
+          </tr>
+          <tr>
+            <td><strong>Bell system</strong></td>
+            <td>Go-live Tuesday facility-wide after toolbox explanation of purpose and accountability.</td>
+          </tr>
+          <tr>
+            <td><strong>Management meeting format</strong></td>
+            <td>Add/start with manager presentations; senior leadership listens and asks questions.</td>
+          </tr>
+          <tr>
+            <td><strong>Schedule lock</strong></td>
+            <td>Rolling 48-hour locked schedule; exceptions for equipment failure or true emergencies.</td>
+          </tr>
+          <tr>
+            <td><strong>Quarterly vs monthly push</strong></td>
+            <td>Consider shifting away from frantic month-end pushes later; continue current approach for now.</td>
+          </tr>
+          <tr>
+            <td><strong>ERP/AI cadence</strong></td>
+            <td>Smaller AI/ERP decision group replaces broad steering temporarily.</td>
+          </tr>
+          <tr>
+            <td><strong>HubSpot</strong></td>
+            <td>Proceed; evaluate AMS integration timing separately.</td>
+          </tr>
+          <tr>
+            <td><strong>Rates review</strong></td>
+            <td>Annual machine-rate standards review after September 1 go-live.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- OPERATIONS -->
+  <section id="operations" class="snap-section tall">
+    <div class="wrap">
+      <p class="eyebrow">Theme 1</p>
+      <h2 class="title">Operations, Overtime &amp; Scheduling</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Workforce strain</h3>
+          <ul>
+            <li>Sustained overtime destroying work-life balance; employees see no end in sight (Robin).</li>
+            <li>Managers to propose 8-hour / 12-hour rotation, weekend rotation, breaks without missing commitments.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>48-hour schedule lock</h3>
+          <ul>
+            <li>John: lack of even 24-hour stable schedule is a major challenge.</li>
+            <li>Schedule changes cause lost hours not captured in closeouts — lock should quantify gains.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTION -->
+  <section id="production" class="snap-section tall">
+    <div class="wrap">
+      <p class="eyebrow">Theme 2</p>
+      <h2 class="title">Production, Make-Ready &amp; Profitability</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Pit-stop make-ready</h3>
+          <p>Managers show where make-ready was, where it is now, and what tools/SOPs are needed. Complex repeat jobs need tooling, video, step-by-step SOPs.</p>
+        </div>
+        <div class="card">
+          <h3>Glue-line &amp; inline embossing</h3>
+          <p>Variance reports identify jobs for priority documentation. Inline embossing reduces multi-pass work — live cutting demo July 27 Roanoke (Brian/John/Max).</p>
+        </div>
+        <div class="card">
+          <h3>Pricing &amp; customer mix</h3>
+          <p>As important as volume when constrained. Explicit method for selecting profitable work. Combination-order pricing is a strength; standalone pricing is a weakness.</p>
+        </div>
+        <div class="card">
+          <h3>QA lab / space</h3>
+          <p>Relocation could reclaim floor space; prior additional cost quote nearly <span class="hl">$10,000</span>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SALES -->
+  <section id="sales" class="snap-section tall">
+    <div class="wrap">
+      <p class="eyebrow">Theme 3</p>
+      <h2 class="title">Sales, Customers &amp; Pipeline</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>P&amp;G growth</h3>
+          <ul>
+            <li>Oral-B spin brushes; Femcare contract discussions.</li>
+            <li>Olay renewal and vendor diversification remain active.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Josh — sales leadership</h3>
+          <ul>
+            <li>Run sales meeting; weekly cross-functional huddles for pain points, wins, best practices.</li>
+            <li>HubSpot for lead gen and customer data — align marketing investment with oversold factory.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Customer selection</h3>
+          <p>Evaluate small customers by potential, price, lead time, risk, and fit with premium positioning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGY -->
+  <section id="technology" class="snap-section tall">
+    <div class="wrap">
+      <p class="eyebrow">Theme 4</p>
+      <h2 class="title">ERP, AI, ESKO &amp; Technology</h2>
+      <div class="card">
+        <h3>AI streams (separate workstreams)</h3>
+        <ul>
+          <li>ERP / system strategy</li>
+          <li>Internal AI quick wins</li>
+          <li>ESKO/Phoenix estimating (urgent — reduce estimating dept pressure)</li>
+          <li>AMS / HubSpot integration</li>
+          <li>Out-of-system automation</li>
+        </ul>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Consultant posture</h3>
+          <p>AI audit useful but broad. Leadership does not want consultants to define strategy by default given full-partnership cost (~$125K/month discussed).</p>
+        </div>
+        <div class="card">
+          <h3>Vendor costing</h3>
+          <p>CERM and HighFlow need all-in estimates: implementation, change orders, internal staff, annual costs, support timing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PEOPLE -->
+  <section id="people" class="snap-section tall">
+    <div class="wrap">
+      <p class="eyebrow">Theme 5</p>
+      <h2 class="title">People, Succession &amp; Training</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Max Kaneff</h3>
+          <ul>
+            <li>More involved in price negotiations within 30 days.</li>
+            <li>Roanoke immersion: complex job shadowing, estimating training, Excel courses.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Suzanne &amp; Walt</h3>
+          <p>Suzanne move to sales targeted Aug/Sep after CS backfill. Heidi conversation expected July.</p>
+        </div>
+        <div class="card">
+          <h3>Robin Rivera — HR initiatives</h3>
+          <ul>
+            <li>SurveyMonkey exit interviews; career path docs; talent identification sheets.</li>
+            <li>July development conversations; pressroom pay scale; Dale Carnegie / public speaking for Josh &amp; Max.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Stamping / embossing risk</h3>
+          <p>Top staffing risk (health/age). Additional trainees and possible second-shift candidate pursued.</p>
+        </div>
+      </div>
+      <div class="card">
+        <h3>2026–2027 transitions</h3>
+        <p>Q4 2026: Gordy retirement, Jeff Drumheller transition, Manny elevation targets.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINANCE -->
+  <section id="finance" class="snap-section">
+    <div class="wrap-narrow">
+      <p class="eyebrow">Theme 6</p>
+      <h2 class="title">Finance, Rates &amp; Benefits</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Rates &amp; standards</h3>
+          <p>Review underway; annual updates after <span class="hl">September 1</span> go-live. Improves estimating, allocation, profitability decisions.</p>
+        </div>
+        <div class="card">
+          <h3>Banking</h3>
+          <p>Remortgage with multiple banks. Appraisal in 2–3 weeks; Michael presents options and recommendation.</p>
+        </div>
+        <div class="card">
+          <h3>401(k)</h3>
+          <p>New national auditor engaged; catch up 2024, then 2025.</p>
+        </div>
+        <div class="card">
+          <h3>Benefits</h3>
+          <p>HSA to Pinnacle — <span class="hl">July 1</span> target. Healthcare renewal discussions with Marsh McLennan starting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RISKS -->
+  <section id="risks" class="snap-section">
+    <div class="wrap-narrow">
+      <p class="eyebrow">Watch list</p>
+      <h2 class="title">Risks &amp; Watch Items</h2>
+      <div class="card">
+        <ul>
+          <li><strong>Burnout:</strong> Sustained OT → quality, attendance, retention if no meaningful breaks.</li>
+          <li><strong>Margin mix:</strong> Oversold conditions may push lower-margin work that blocks profitable jobs.</li>
+          <li><strong>ERP/AI delay:</strong> Slows estimating, Estée Lauder support, forecasting, HubSpot/AMS integration.</li>
+          <li><strong>Key-person gaps:</strong> Estimator and stamping/embossing staffing.</li>
+          <li><strong>Marketing vs capacity:</strong> Spend must align with profitable customer strategy, not volume alone.</li>
+          <li><strong>Marsh McLennan / 3R:</strong> Resolve reporting and antiquated software dependencies before more vendor exposure.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDAR -->
+  <section id="calendar" class="snap-section tall">
+    <div class="wrap">
+      <p class="eyebrow">Timeline</p>
+      <h2 class="title">Upcoming Dates</h2>
+      <table>
+        <thead><tr><th>Date</th><th>Item</th></tr></thead>
+        <tbody>
+          <tr><td><strong>May 21, 2026</strong></td><td>In-person sales meeting; PacSmart/dynamic QR training; CERM demo conflict for Max.</td></tr>
+          <tr><td><strong>Tuesday after May 20</strong></td><td>Bell system official go-live after toolbox explanation.</td></tr>
+          <tr><td><strong>First week of June 2026</strong></td><td>Cold foil linear-foot tracking target go-live.</td></tr>
+          <tr><td><strong>June 23, 2026</strong></td><td>Session 7 Succession Planning meeting.</td></tr>
+          <tr><td><strong>July 1, 2026</strong></td><td>HSA transition to Pinnacle target go-live.</td></tr>
+          <tr><td><strong>July 22, 2026</strong></td><td>Hauppauge summer luncheon / holiday BBQ timing referenced.</td></tr>
+          <tr><td><strong>Week of July 27, 2026</strong></td><td>Roanoke immersion — Max, Brian, Mike; make-ready videos, glue-line tooling, inline embossing demo.</td></tr>
+          <tr><td><strong>July 29, 2026</strong></td><td>Roanoke summer luncheon; Session 8 timing; John O’Connor expected onsite.</td></tr>
+          <tr><td><strong>Aug–Sep 2026</strong></td><td>Suzanne sales transition target.</td></tr>
+          <tr><td><strong>September 1, 2026</strong></td><td>Rates and standards go-live; ERP vendor decision target under review.</td></tr>
+          <tr><td><strong>Q4 2026 / Q1 2027</strong></td><td>Public speaking course for Josh and Max.</td></tr>
+          <tr><td><strong>Q4 2026</strong></td><td>Gordy retirement; Jeff Drumheller transition; Manny elevation targets.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FULL REGISTER BY OWNER -->
+  <section id="register" class="snap-section tall">
+    <div class="wrap">
+      <p class="eyebrow">Complete register</p>
+      <h2 class="title">All Actions by Owner</h2>
+
+      <div class="owner-group">
+        <h3>Mitchell Kaneff</h3>
+        <table class="actions-table">
+          <tbody>
+            <tr><td>Copilot/Plaud legal signoffs with Greg/Todd</td><td>Today / ASAP</td></tr>
+            <tr><td>Grace Williams fourth-gen narrative — final outreach</td><td>Before next review</td></tr>
+            <tr><td>Retreat budget with Michael; facilitator options with Robin</td><td>June cycle</td></tr>
+            <tr><td>Robotics / gluer-end palletizing monitoring</td><td>Ongoing</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="owner-group">
+        <h3>John Humphries</h3>
+        <table class="actions-table">
+          <tbody>
+            <tr><td>Bell system toolbox briefings + Tuesday go-live</td><td>Tuesday</td></tr>
+            <tr><td>Management meeting agenda — dept presentations</td><td>June</td></tr>
+            <tr><td>Shift/weekend rotation options with Robin</td><td>Before June</td></tr>
+            <tr><td>Glue-line supervisor + stamping/embossing staffing</td><td>7–10 days</td></tr>
+            <tr><td>Marsh McLennan / 3R proposal to Michael</td><td>ASAP</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="owner-group">
+        <h3>Josh Kaneff</h3>
+        <table class="actions-table">
+          <tbody>
+            <tr><td>Weekly cross-functional huddle launch</td><td>Next week</td></tr>
+            <tr><td>QR/dynamic coding cost adder — email Steve</td><td>After sales meeting</td></tr>
+            <tr><td>ESKO/Phoenix AI estimating escalation</td><td>This week</td></tr>
+            <tr><td>Dark Room negotiate to $8K–$9K/month</td><td>Before approval</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="owner-group">
+        <h3>Robin Rivera</h3>
+        <table class="actions-table">
+          <tbody>
+            <tr><td>Estimator LinkedIn posting</td><td>Today</td></tr>
+            <tr><td>July development conversation naming</td><td>Before July</td></tr>
+            <tr><td>Career-path documentation + employee confirmations</td><td>30 days</td></tr>
+            <tr><td>Dale Carnegie + public speaking for Josh/Max</td><td>Q4–Q1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="owner-group">
+        <h3>Max Kaneff</h3>
+        <table class="actions-table">
+          <tbody>
+            <tr><td>Smaller AI/ERP decision meeting</td><td>Next Tuesday</td></tr>
+            <tr><td>CERM + HighFlow all-in costs</td><td>Before ERP decision</td></tr>
+            <tr><td>ESKO/WebCenter/RDOS follow-ups</td><td>This week</td></tr>
+            <tr><td>HubSpot/AMS integration review with Hector</td><td>Before launch</td></tr>
+            <tr><td>Price negotiations + Roanoke immersion</td><td>30 days</td></tr>
+            <tr><td>July 27 Roanoke week planning with Brian/John</td><td>Before July 27</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="owner-group">
+        <h3>Michael Dercksen</h3>
+        <table class="actions-table">
+          <tbody>
+            <tr><td>Bank responses + appraisal → financing recommendation</td><td>2–3 weeks</td></tr>
+            <tr><td>Rates &amp; standards review with Robert</td><td>Sep 1 go-live</td></tr>
+            <tr><td>HSA transition communications</td><td>10 days</td></tr>
+            <tr><td>401(k) audit + healthcare renewal</td><td>30 days</td></tr>
+            <tr><td>Retreat budget with Mitchell</td><td>June cycle</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="owner-group">
+        <h3>Walt Shiels</h3>
+        <table class="actions-table">
+          <tbody>
+            <tr><td>Heidi conversation for Suzanne transition; P&amp;G pipeline knowledge</td><td>July / ongoing</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="footer-note">Arkay Packaging · Succession Planning Session 6 · May 20, 2026 · Confidential · Source: Session 6 Meeting Notes</p>
+    </div>
+  </section>
+
+  <script>
+    const sections = document.querySelectorAll(".snap-section");
+    const dots = document.querySelectorAll("nav.dots a");
+    const progressBar = document.getElementById("progressBar");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            dots.forEach((d) => d.classList.toggle("active", d.getAttribute("href") === `#${id}`));
+          }
+        });
+      },
+      { threshold: 0.55 }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.querySelector(dot.getAttribute("href"))?.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    window.addEventListener("scroll", () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = docHeight > 0 ? `${(window.scrollY / docHeight) * 100}%` : "0%";
+    }, { passive: true });
+
+    document.addEventListener("keydown", (e) => {
+      if (!["ArrowDown", "ArrowUp", "PageDown", "PageUp"].includes(e.key)) return;
+      e.preventDefault();
+      const idx = [...sections].findIndex((s) => s.getBoundingClientRect().top >= -window.innerHeight * 0.45);
+      const i = idx < 0 ? 0 : idx;
+      const next = e.key === "ArrowDown" || e.key === "PageDown" ? Math.min(i + 1, sections.length - 1) : Math.max(i - 1, 0);
+      sections[next].scrollIntoView({ behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>

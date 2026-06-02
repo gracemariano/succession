@@ -14,6 +14,8 @@ Then visit http://localhost:8080
 
 ## GitHub Pages
 
-Pushes to `main` deploy automatically via GitHub Actions.
+1. Open [repository Settings → Pages](https://github.com/gracemariano/succession/settings/pages)
+2. **Build and deployment** → Source: **Deploy from a branch**
+3. Branch: **main** / **/ (root)** → Save
 
-Live site: https://gracemariano.github.io/succession/
+Live site: **https://gracemariano.github.io/succession/**

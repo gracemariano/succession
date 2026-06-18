@@ -28,11 +28,13 @@
       --red: #b42318;
       --red-soft: #fef2f2;
       --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 14px rgba(15, 23, 42, 0.05);
+      --radius: 12px;
+      --header-h: 10.5rem;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
 
     body {
       font-family: "Inter", system-ui, sans-serif;
@@ -42,7 +44,199 @@
       background: var(--bg);
     }
 
-    .wrap { max-width: 72rem; margin: 0 auto; padding: 2rem 1.25rem 3.5rem; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .logo-bar {
+      background: linear-gradient(180deg, #faf8f4 0%, #fff 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 0.85rem 1.25rem;
+      text-align: center;
+    }
+
+    .site-logo {
+      height: clamp(44px, 8vw, 64px);
+      width: auto;
+      max-width: 240px;
+      object-fit: contain;
+      display: inline-block;
+    }
+
+    .header-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem 0.65rem;
+    }
+
+    .brand-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .brand {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    .date-pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--navy);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+    }
+
+    .date-pill.muted {
+      background: var(--muted-bg);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .tab-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      padding-bottom: 0.25rem;
+      overflow-x: auto;
+    }
+
+    .tab-nav a {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .tab-nav a:hover { background: var(--muted-bg); color: var(--text); }
+    .tab-nav a.active { background: var(--navy); color: #fff; }
+    .tab-nav a.archive { border: 1px dashed var(--border); }
+
+    nav.snap-dots {
+      position: fixed;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    nav.snap-dots a {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(30, 77, 140, 0.2);
+      border: 1px solid rgba(30, 77, 140, 0.35);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    nav.snap-dots a:hover,
+    nav.snap-dots a.active {
+      background: var(--navy);
+      transform: scale(1.35);
+    }
+
+    nav.snap-dots a span { display: none; }
+
+    main {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1.25rem 2rem;
+    }
+
+    .panel {
+      min-height: calc(100dvh - var(--header-h));
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.5rem 0 2rem;
+      position: relative;
+    }
+
+    .panel.tall { justify-content: flex-start; padding-top: 1.25rem; }
+
+    .panel-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .meeting-title {
+      font-size: clamp(1.35rem, 3vw, 1.85rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .meeting-date { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      animation: fadeHint 2s ease-in-out infinite;
+    }
+
+    @keyframes fadeHint {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 1; }
+    }
+
+    .meeting-divider {
+      min-height: calc(100dvh - var(--header-h));
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      margin: 0;
+      padding: 2rem 1.5rem;
+      background: var(--surface);
+      border: 2px solid var(--navy);
+      border-radius: var(--radius);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .meeting-divider h2 { font-size: 1.35rem; color: var(--navy); margin-bottom: 0.35rem; }
+    .meeting-divider p { color: var(--text-muted); font-size: 0.9rem; }
+
+    .block, .panel .block-inner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.5rem 1.35rem;
+      width: 100%;
+    }
 
     .badge {
       display: inline-block;
@@ -111,7 +305,9 @@
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
       padding: 1.5rem 1.5rem 1.35rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 0;
+      border-radius: var(--radius);
+      width: 100%;
     }
 
     h2.section-title {
@@ -497,23 +693,16 @@
       margin: 0;
     }
 
+    .page-nav { display: none; }
+
     .section-divider {
-      margin: 3rem 0 2rem;
-      padding: 1.25rem 1.5rem;
-      background: var(--navy);
-      color: #fff;
+      display: none;
     }
 
-    .section-divider h2 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      margin: 0;
-    }
-
-    .section-divider p {
-      margin: 0.35rem 0 0;
-      font-size: 0.92rem;
-      opacity: 0.85;
+    @media (max-width: 640px) {
+      nav.snap-dots { display: none; }
+      .brand { font-size: 0.9rem; }
+      .tab-nav a { font-size: 0.7rem; padding: 0.4rem 0.6rem; }
     }
 
     @media (max-width: 600px) {
@@ -527,7 +716,7 @@
         margin: 0.4in 0.45in;
       }
 
-      html { font-size: 10pt; }
+      html { scroll-snap-type: none; font-size: 10pt; }
 
       body {
         background: #fff !important;
@@ -538,15 +727,23 @@
         print-color-adjust: exact;
       }
 
-      .page-nav { display: none !important; }
+      .site-header { position: static; }
+      .tab-nav, nav.snap-dots, .scroll-hint { display: none !important; }
 
-      .wrap {
+      main {
         max-width: none;
         width: 142.857%;
         padding: 0;
         margin: 0;
         transform: scale(0.7);
         transform-origin: top left;
+      }
+
+      .panel, .meeting-divider {
+        scroll-snap-align: none;
+        scroll-snap-stop: normal;
+        min-height: auto;
+        page-break-after: always;
       }
 
       .block,
@@ -563,38 +760,8 @@
         page-break-inside: avoid;
       }
 
-      .section-divider {
-        page-break-before: always;
-        background: #1e4d8c !important;
-        color: #fff !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .section-title {
-        page-break-after: avoid;
-      }
-
-      table {
-        page-break-inside: auto;
-        font-size: 0.88rem;
-      }
-
+      table { font-size: 0.88rem; }
       tr { page-break-inside: avoid; }
-
-      .stat-row .big,
-      .metric .big,
-      .priority-card .pnum,
-      .stat-box .big {
-        font-size: 1.65rem;
-      }
-
-      .prep-blank {
-        min-height: 2rem;
-        border-style: solid;
-      }
-
-      a { color: inherit; text-decoration: none; }
 
       h1 { font-size: 1.5rem; }
       h2.section-title { font-size: 0.95rem; }
@@ -605,27 +772,73 @@
   </style>
 </head>
 <body>
-  <div class="wrap">
 
-    <nav class="page-nav" aria-label="Page sections">
-      <a href="#agenda">Agenda</a>
-      <a href="#prep">Prep checklist</a>
-      <a href="#session6">Session 6 notes</a>
+<header class="site-header">
+  <div class="logo-bar">
+    <img src="arkay-logo.png" alt="Arkay Packaging" class="site-logo" width="240" height="64" />
+  </div>
+  <div class="header-inner">
+    <div class="brand-row">
+      <div class="brand">Arkay Succession Planning</div>
+      <span class="date-pill">Session 7 · June 23, 2026</span>
+    </div>
+    <nav class="tab-nav" aria-label="Sections">
+      <a href="#hero" class="active">Overview</a>
+      <a href="#agenda-1">Agenda 1</a>
+      <a href="#agenda-2">Agenda 2</a>
+      <a href="#agenda-3">Agenda 3</a>
+      <a href="#prep-1">Prep 1</a>
+      <a href="#prep-2">Prep 2</a>
+      <a href="#session6-intro" class="archive">Session 6 ↓</a>
+      <a href="#summary">Summary</a>
+      <a href="#priorities">Priorities</a>
+      <a href="#actions">Actions</a>
+      <a href="#metrics">Metrics</a>
+      <a href="#themes">Themes</a>
+      <a href="#register">Register</a>
     </nav>
+  </div>
+</header>
 
-    <header>
-      <span class="badge">Confidential · Succession Planning</span>
-      <h1>Session 7 — June 23, 2026</h1>
-      <p class="lede">30-day accountability review · Reviewing commitments from the May 20, 2026 session</p>
-      <div class="meeting-meta">
-        <div class="meta-item"><div class="lbl">Date</div><div class="val">Monday, June 23, 2026</div></div>
-        <div class="meta-item"><div class="lbl">Time</div><div class="val">10:00 AM – 2:00 PM</div></div>
-        <div class="meta-item"><div class="lbl">Location</div><div class="val">Southampton · Mitchell's house</div></div>
-      </div>
-    </header>
+<nav class="snap-dots" aria-label="Section navigation">
+  <a href="#hero" title="Overview"></a>
+  <a href="#agenda-1" title="Agenda 1"></a>
+  <a href="#agenda-2" title="Agenda 2"></a>
+  <a href="#agenda-3" title="Agenda 3"></a>
+  <a href="#prep-1" title="Prep 1"></a>
+  <a href="#prep-2" title="Prep 2"></a>
+  <a href="#session6-intro" title="Session 6"></a>
+  <a href="#summary" title="Summary"></a>
+  <a href="#priorities" title="Priorities"></a>
+  <a href="#actions" title="Actions"></a>
+  <a href="#metrics" title="Metrics"></a>
+  <a href="#themes" title="Themes"></a>
+  <a href="#register" title="Register"></a>
+</nav>
 
-    <section class="block" id="agenda">
-      <h2 class="section-title">Session 7 agenda</h2>
+<main>
+
+  <section id="hero" class="panel" style="position:relative">
+    <p class="panel-label">Confidential · Succession Planning</p>
+    <h2 class="meeting-title">Session 7 — June 23, 2026</h2>
+    <p class="meeting-date">30-day accountability review · Southampton · Mitchell's house · 10:00 AM – 2:00 PM</p>
+    <div class="meeting-meta">
+      <div class="meta-item"><div class="lbl">Date</div><div class="val">Monday, June 23, 2026</div></div>
+      <div class="meta-item"><div class="lbl">Time</div><div class="val">10:00 AM – 2:00 PM</div></div>
+      <div class="meta-item"><div class="lbl">Location</div><div class="val">Southampton · Mitchell's house</div></div>
+    </div>
+    <div class="stat-row" style="margin-top:1.25rem">
+      <div class="stat-box a"><div class="big">+$6–7M</div><div class="lbl">Revenue ahead</div></div>
+      <div class="stat-box b"><div class="big">~20%</div><div class="lbl">Bookings YoY</div></div>
+      <div class="stat-box c"><div class="big">$60K</div><div class="lbl">OT per week</div></div>
+      <div class="stat-box d"><div class="big">48 hr</div><div class="lbl">Schedule lock</div></div>
+    </div>
+    <p class="scroll-hint">Scroll ↓ — each section stops</p>
+  </section>
+
+  <section id="agenda-1" class="panel tall">
+    <p class="panel-label">Session 7</p>
+    <h2 class="section-title">Agenda — Opening &amp; accountability</h2>
       <p class="agenda-purpose"><strong>Purpose:</strong> Review 30-day accountability progress, resolve open decision points, and align the leadership team on the next 30-day execution priorities.</p>
 
       <div class="agenda-block">
@@ -659,6 +872,11 @@
         <div class="agenda-owner"><h4>Robin Rivera — HR &amp; talent development</h4>
           <ul><li>Exit interviews · Career paths · Talent sheets · July dev conversations · Dale Carnegie/public speaking · Press room pay scale · Estimator posting · Huddle feedback</li></ul></div>
       </div>
+    </section>
+
+  <section id="agenda-2" class="panel tall">
+    <p class="panel-label">Session 7</p>
+    <h2 class="section-title">Agenda — Decisions &amp; planning</h2>
 
       <div class="agenda-block">
         <h3>3. Key decision topics</h3>
@@ -706,6 +924,11 @@
           <li>Overtime burnout · Lower-margin work when oversold · ERP/AI/CRM delay · Estimator &amp; stamping/embossing gaps · Marketing vs. capacity · Marsh McLennan/3R · Knowledge capture consistency</li>
         </ul>
       </div>
+    </section>
+
+  <section id="agenda-3" class="panel tall">
+    <p class="panel-label">Session 7</p>
+    <h2 class="section-title">Agenda — Commitments &amp; close</h2>
 
       <div class="agenda-block">
         <h3>7. New items from prep document</h3>
@@ -748,8 +971,9 @@
       </div>
     </section>
 
-    <section class="block" id="prep">
-      <h2 class="section-title">Session 7 prep checklist</h2>
+  <section id="prep-1" class="panel tall">
+    <p class="panel-label">Prep checklist</p>
+    <h2 class="section-title">30-day accountability review</h2>
       <p class="prep-intro">Review Part 1 below before the meeting. Complete Parts 2–4 for your area and bring to Southampton.</p>
       <div class="legend">
         <span class="done">Done</span>
@@ -825,6 +1049,12 @@
         <div class="prep-blank"><h4>Part 3 — New challenges &amp; opportunities</h4><p>Complete before meeting</p></div>
         <div class="prep-blank"><h4>Part 4 — Focus areas (next 30 days)</h4><p>Complete before meeting</p></div>
       </div>
+    </section>
+
+  <section id="prep-2" class="panel tall">
+    <p class="panel-label">Prep checklist</p>
+    <h2 class="section-title">Accountability review (continued)</h2>
+    <p class="prep-intro">Parts 2–4: complete before the meeting and bring to Southampton.</p>
 
       <div class="prep-owner" id="prep-brian">
         <h3>Brian Hopkins</h3>
@@ -957,25 +1187,20 @@
       </table>
     </section>
 
-    <div class="section-divider" id="session6">
-      <h2>Previous meeting — Session 6 notes</h2>
-      <p>May 20, 2026 · Reference archive below</p>
-    </div>
+  <section id="session6-intro" class="meeting-divider">
+    <h2>Previous meeting — Session 6</h2>
+    <p>May 20, 2026 · Reference archive below</p>
+  </section>
 
-    <header>
-      <span class="badge">Session 6 archive</span>
-      <h1>Session 6 Meeting Notes</h1>
-      <p class="lede">May 20, 2026</p>
-    </header>
-
+  <section id="summary" class="panel tall">
+    <p class="panel-label">Session 6 archive</p>
     <div class="stat-row">
       <div class="stat-box a"><div class="big">+$6–7M</div><div class="lbl">Revenue ahead of prior year</div></div>
       <div class="stat-box b"><div class="big">~20%</div><div class="lbl">Bookings ahead YoY</div></div>
       <div class="stat-box c"><div class="big">$60K</div><div class="lbl">Overtime per week</div></div>
       <div class="stat-box d"><div class="big">48 hr</div><div class="lbl">Schedule lock target</div></div>
     </div>
-
-    <section class="block" id="summary">
+    <section class="block" style="margin-top:1rem">
       <h2 class="section-title">Executive summary</h2>
       <ul>
         <li>Focus: operational strain, succession execution, leadership development, ERP/AI decisions, sales pipeline quality, profitability discipline.</li>
@@ -987,8 +1212,9 @@
       </ul>
       <div class="callout"><strong>Central tension:</strong> Strong revenue and bookings, but ~$60K/week overtime is eroding profitability and exhausting the workforce.</div>
     </section>
+  </section>
 
-    <section class="block" id="priorities">
+  <section id="priorities" class="panel tall">
       <h2 class="section-title">Top priorities (in order)</h2>
       <div class="priority-list">
         <article class="priority-card critical">
@@ -1025,8 +1251,9 @@
         </article>
       </div>
     </section>
+  </section>
 
-    <section class="block" id="actions">
+  <section id="actions" class="panel tall">
       <h2 class="section-title">Action items · priority order</h2>
 
       <div class="action-group p0">
@@ -1093,8 +1320,9 @@
         </table>
       </div>
     </section>
+  </section>
 
-    <section class="block" id="metrics">
+  <section id="metrics" class="panel tall">
       <h2 class="section-title">Key metrics</h2>
       <div class="metrics-grid">
         <div class="metric"><div class="lbl">Revenue / bookings</div><div class="big">+$6–7M</div><div class="sub">~20% ahead YoY bookings</div></div>
@@ -1107,10 +1335,7 @@
         <div class="metric"><div class="lbl">ERP PM</div><div class="big">~$100K</div><div class="sub">18 mo · ~$225/hr</div></div>
         <div class="metric"><div class="lbl">Dark Room (target)</div><div class="big">$8–9K</div><div class="sub">/mo LinkedIn + SEO/AIO</div></div>
       </div>
-    </section>
-
-    <section class="block" id="decisions">
-      <h2 class="section-title">Major decisions</h2>
+      <h2 class="section-title" style="margin-top:1.5rem">Major decisions</h2>
       <table>
         <thead><tr><th>Decision</th><th>Detail</th></tr></thead>
         <tbody>
@@ -1124,10 +1349,11 @@
           <tr><td><strong>Rates review</strong></td><td>Annual machine-rate standards after Sep 1 go-live.</td></tr>
         </tbody>
       </table>
-    </section>
+  </section>
 
-    <section class="block" id="operations">
-      <h2 class="section-title">Operations, overtime &amp; scheduling</h2>
+  <section id="themes" class="panel tall">
+    <p class="panel-label">Session 6 archive</p>
+    <h2 class="section-title">Operations, overtime &amp; scheduling</h2>
       <div class="grid-2">
         <div class="sub-card orange">
           <h3>Workforce strain</h3>
@@ -1144,39 +1370,31 @@
           </ul>
         </div>
       </div>
-    </section>
 
-    <section class="block" id="production">
-      <h2 class="section-title">Production, make-ready &amp; profitability</h2>
+    <h2 class="section-title" style="margin-top:1.5rem">Production, make-ready &amp; profitability</h2>
       <ul>
         <li><strong>Pit-stop make-ready:</strong> Managers show before/after and needed tools/SOPs; repeat jobs need video and step-by-step docs.</li>
         <li><strong>Inline embossing:</strong> Reduce multi-pass work — demo July 27 Roanoke (Brian/John/Max).</li>
         <li><strong>Pricing mix:</strong> Select profitable work when constrained; combination pricing strong, standalone weak.</li>
         <li><strong>QA lab relocation:</strong> Could reclaim floor space (~$10K prior quote).</li>
       </ul>
-    </section>
 
-    <section class="block" id="sales">
-      <h2 class="section-title">Sales, customers &amp; pipeline</h2>
+    <h2 class="section-title" style="margin-top:1.5rem">Sales, customers &amp; pipeline</h2>
       <ul>
         <li><strong>P&amp;G:</strong> Oral-B spin brushes; Femcare; Olay renewal; vendor diversification.</li>
         <li><strong>Josh:</strong> Sales meeting + weekly huddles (CS, planning, imaging, structural, estimating, HR).</li>
         <li><strong>HubSpot:</strong> Lead gen — align marketing spend with oversold factory.</li>
         <li><strong>Customer selection:</strong> Potential, price, lead time, risk, premium fit.</li>
       </ul>
-    </section>
 
-    <section class="block" id="technology">
-      <h2 class="section-title">ERP, AI &amp; technology</h2>
+    <h2 class="section-title" style="margin-top:1.5rem">ERP, AI &amp; technology</h2>
       <ul>
         <li>Streams: ERP strategy · internal quick wins · ESKO/Phoenix estimating (urgent) · AMS/HubSpot · automation.</li>
         <li>Leadership does not want consultants to own strategy by default (~$125K/mo partnership discussed).</li>
         <li>CERM &amp; HighFlow need all-in cost estimates before decision.</li>
       </ul>
-    </section>
 
-    <section class="block" id="people">
-      <h2 class="section-title">People, succession &amp; training</h2>
+    <h2 class="section-title" style="margin-top:1.5rem">People, succession &amp; training</h2>
       <div class="grid-2">
         <div class="sub-card">
           <h3>Max Kaneff</h3>
@@ -1196,10 +1414,8 @@
         </div>
       </div>
       <p style="margin-top:0.75rem"><strong>Q4 2026:</strong> Gordy retirement; Jeff Drumheller transition; Manny elevation.</p>
-    </section>
 
-    <section class="block" id="finance">
-      <h2 class="section-title">Finance, rates &amp; benefits</h2>
+    <h2 class="section-title" style="margin-top:1.5rem">Finance, rates &amp; benefits</h2>
       <div class="metrics-grid" style="margin-bottom:1rem">
         <div class="metric accent-teal"><div class="lbl">Rates go-live</div><div class="big">Sep 1</div><div class="sub">annual review cadence</div></div>
         <div class="metric"><div class="lbl">HSA to Pinnacle</div><div class="big">Jul 1</div><div class="sub">target go-live</div></div>
@@ -1209,10 +1425,8 @@
         <li>401(k): new national auditor; catch up 2024 then 2025.</li>
         <li>Healthcare renewal with Marsh McLennan starting.</li>
       </ul>
-    </section>
 
-    <section class="block" id="risks">
-      <h2 class="section-title">Risks &amp; watch items</h2>
+    <h2 class="section-title" style="margin-top:1.5rem">Risks &amp; watch items</h2>
       <ul>
         <li><strong>Burnout</strong> — OT → quality, attendance, retention without breaks.</li>
         <li><strong>Margin mix</strong> — lower-margin work blocking profitable jobs when oversold.</li>
@@ -1221,10 +1435,8 @@
         <li><strong>Marketing vs capacity</strong> — spend aligned with profitable strategy.</li>
         <li><strong>Marsh McLennan / 3R</strong> — resolve before more vendor exposure.</li>
       </ul>
-    </section>
 
-    <section class="block" id="calendar">
-      <h2 class="section-title">Upcoming dates</h2>
+    <h2 class="section-title" style="margin-top:1.5rem">Upcoming dates</h2>
       <table>
         <thead><tr><th>Date</th><th>Item</th></tr></thead>
         <tbody>
@@ -1242,9 +1454,9 @@
           <tr><td><strong>Q4 2026</strong></td><td>Gordy retirement; Jeff transition; Manny elevation</td></tr>
         </tbody>
       </table>
-    </section>
+  </section>
 
-    <section class="block" id="register">
+  <section id="register" class="panel tall">
       <h2 class="section-title">All actions by owner</h2>
       <div class="owner-block"><h3>Mitchell Kaneff</h3>
         <table class="actions-table"><tbody>
@@ -1303,9 +1515,46 @@
           <tr><td>Heidi / Suzanne; P&amp;G pipeline</td><td>July / ongoing</td></tr>
         </tbody></table>
       </div>
-    </section>
+  </section>
 
-    <p class="footer-note">Arkay Packaging · Succession Planning · Session 7 June 23, 2026 · Session 6 archive May 20, 2026 · Confidential</p>
-  </div>
+</main>
+
+<p class="footer-note">Arkay Packaging · Succession Planning · Session 7 June 23, 2026 · Session 6 archive May 20, 2026 · Confidential</p>
+
+<script>
+  const tabs = document.querySelectorAll(".tab-nav a");
+  const dots = document.querySelectorAll("nav.snap-dots a");
+  const panels = document.querySelectorAll(".panel, .meeting-divider");
+
+  function setActive(id) {
+    tabs.forEach((t) => t.classList.toggle("active", t.getAttribute("href") === `#${id}`));
+    dots.forEach((d) => d.classList.toggle("active", d.getAttribute("href") === `#${id}`));
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, { rootMargin: "-140px 0px -50% 0px", threshold: 0 });
+
+  panels.forEach((p) => observer.observe(p));
+
+  [...tabs, ...dots].forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.querySelector(link.getAttribute("href"))?.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!["ArrowDown", "ArrowUp", "PageDown", "PageUp"].includes(e.key)) return;
+    e.preventDefault();
+    const list = [...panels];
+    const idx = list.findIndex((p) => p.getBoundingClientRect().top >= -window.innerHeight * 0.4);
+    const i = idx < 0 ? 0 : idx;
+    const next = e.key === "ArrowDown" || e.key === "PageDown" ? Math.min(i + 1, list.length - 1) : Math.max(i - 1, 0);
+    list[next].scrollIntoView({ behavior: "smooth" });
+  });
+</script>
 </body>
 </html>

@@ -34,7 +34,10 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header-h);
+    }
 
     body {
       font-family: "Inter", system-ui, sans-serif;
@@ -175,17 +178,17 @@
     }
 
     .panel {
-      min-height: calc(100dvh - var(--header-h));
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 1.5rem 0 2rem;
+      padding: 1.75rem 0 2.25rem;
       position: relative;
     }
 
-    .panel.tall { justify-content: flex-start; padding-top: 1.25rem; }
+    .panel + .panel,
+    .panel + .meeting-divider,
+    .meeting-divider + .panel {
+      border-top: 1px solid var(--border);
+    }
+
+    .panel.tall { padding-top: 1.5rem; }
 
     .panel-label {
       font-size: 0.7rem;
@@ -206,37 +209,15 @@
 
     .meeting-date { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; }
 
-    .scroll-hint {
-      position: absolute;
-      bottom: 1.25rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      animation: fadeHint 2s ease-in-out infinite;
-    }
-
-    @keyframes fadeHint {
-      0%, 100% { opacity: 0.35; }
-      50% { opacity: 1; }
-    }
+    .scroll-hint { display: none; }
 
     .meeting-divider {
-      min-height: calc(100dvh - var(--header-h));
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
       margin: 0;
-      padding: 2rem 1.5rem;
+      padding: 2.5rem 1.5rem;
       background: var(--surface);
       border: 2px solid var(--navy);
       border-radius: var(--radius);
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
     }
 
     .meeting-divider h2 { font-size: 1.35rem; color: var(--navy); margin-bottom: 0.35rem; }
@@ -849,7 +830,6 @@
       <div class="stat-box c"><div class="big">$60K</div><div class="lbl">OT per week</div></div>
       <div class="stat-box d"><div class="big">48 hr</div><div class="lbl">Schedule lock</div></div>
     </div>
-    <p class="scroll-hint">Scroll ↓ — each section stops</p>
   </section>
 
   <section id="agenda-1" class="panel tall">

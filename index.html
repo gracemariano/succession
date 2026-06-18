@@ -355,6 +355,66 @@
       width: 7rem;
     }
 
+    .agenda-block {
+      margin-bottom: 1.35rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .agenda-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .agenda-block h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0 0 0.25rem;
+    }
+
+    .agenda-meta {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 0.55rem;
+    }
+
+    .agenda-meta strong { color: var(--teal); }
+
+    .agenda-block ul { margin: 0.35rem 0 0 1.15rem; }
+    .agenda-block li { margin-bottom: 0.3rem; font-size: 0.98rem; }
+
+    .agenda-owner {
+      margin-top: 0.65rem;
+      padding: 0.65rem 0.85rem;
+      background: var(--muted-bg);
+      border-left: 3px solid var(--navy);
+    }
+
+    .agenda-owner h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0 0 0.3rem;
+    }
+
+    .decision-box {
+      margin-top: 0.55rem;
+      padding: 0.65rem 0.85rem;
+      background: var(--orange-soft);
+      border-left: 4px solid var(--orange);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .decision-box span { color: var(--orange); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; display: block; margin-bottom: 0.2rem; }
+
+    .agenda-purpose {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      padding: 0.85rem 1rem;
+      background: var(--navy-soft);
+      border: 1px solid var(--border);
+    }
+
     .prep-intro {
       font-size: 0.95rem;
       color: var(--text-muted);
@@ -483,23 +543,127 @@
     </header>
 
     <section class="block" id="agenda">
-      <h2 class="section-title">Meeting agenda</h2>
-      <table class="agenda-row">
-        <thead><tr><th>Time</th><th>Topic</th></tr></thead>
-        <tbody>
-          <tr><td>10:00</td><td><strong>Welcome &amp; objectives</strong> — Session 7 purpose, ground rules, prep doc review format</td></tr>
-          <tr><td>10:15</td><td><strong>Strategic opening</strong> — Mitchell: priorities since May 20 (schedule lock, OT, ERP/AI, rates review)</td></tr>
-          <tr><td>10:30</td><td><strong>Part 1 — Prior commitment review</strong> — Each owner presents updated status (~8 min each): Mitchell, Josh, Max, Brian, John Sheridan, Walt, Michael, Robin</td></tr>
-          <tr><td>11:45</td><td><strong>Break</strong></td></tr>
-          <tr><td>11:55</td><td><strong>Part 2 — What's new</strong> — Initiatives, goals, or processes each owner brings forward</td></tr>
-          <tr><td>12:20</td><td><strong>Part 3 — Challenges &amp; opportunities</strong> — New issues, blockers, and upside since last session</td></tr>
-          <tr><td>12:45</td><td><strong>Lunch</strong></td></tr>
-          <tr><td>1:15</td><td><strong>Part 4 — Next 30 days</strong> — Focus areas and commitments through Session 8</td></tr>
-          <tr><td>1:40</td><td><strong>Cross-cutting discussion</strong> — OT &amp; shift coverage · 48-hr schedule lock results · HubSpot/AMS · ERP decision group · Sep 1 rates go-live</td></tr>
-          <tr><td>1:50</td><td><strong>Wrap-up</strong> — Decisions, action register updates, upcoming dates (Jul 27 Roanoke, Jul 29 Session 8, Aug/Sep transitions)</td></tr>
-          <tr><td>2:00</td><td><strong>Adjourn</strong></td></tr>
-        </tbody>
-      </table>
+      <h2 class="section-title">Session 7 agenda</h2>
+      <p class="agenda-purpose"><strong>Purpose:</strong> Review 30-day accountability progress, resolve open decision points, and align the leadership team on the next 30-day execution priorities.</p>
+
+      <div class="agenda-block">
+        <h3>1. Opening &amp; meeting objectives</h3>
+        <p class="agenda-meta"><strong>5 min</strong> · Lead: Mitchell / Facilitator</p>
+        <ul>
+          <li>Confirm Session 7 purpose: move from discussion to execution.</li>
+          <li>Re-anchor on Session 6 themes: OT pressure, succession execution, ERP/AI/CRM decisions, pipeline quality, manager ownership.</li>
+        </ul>
+      </div>
+
+      <div class="agenda-block">
+        <h3>2. 30-day accountability review</h3>
+        <p class="agenda-meta"><strong>35–45 min</strong> · Lead: Facilitator</p>
+        <p>Review prior commitments by owner — done, in progress, blocked, or needs group decision.</p>
+
+        <div class="agenda-owner"><h4>Mitchell Kaneff — Strategic oversight</h4>
+          <ul><li>Bell system go-live &amp; discipline monitoring · HubSpot ownership shift · Plaud/Copilot legal releases · Fourth-gen PR outreach · Robotics monitoring</li></ul></div>
+        <div class="agenda-owner"><h4>Josh Kaneff — Sales &amp; external relationships</h4>
+          <ul><li>Sales meeting &amp; PacSmart/QR training · Weekly huddle launch · HubSpot adoption · Profitable-growth filter · Whale-hunting SOP · Estimating/structural depth</li></ul></div>
+        <div class="agenda-owner"><h4>Max Kaneff — Operations &amp; internal systems</h4>
+          <ul><li>HubSpot rollout &amp; AMS integration · ERP/AI decision group · CERM/HighFlow costs · July 27 Roanoke planning · Kelly estimating training · Excel &amp; chain-of-command</li></ul></div>
+        <div class="agenda-owner"><h4>Brian Hopkins — Knowledge transfer</h4>
+          <ul><li>Max immersion · Packaging Bible capture · Morning-meeting teaching · July 27 Roanoke plan · Glue-line tooling &amp; make-ready videos · Plaud usage</li></ul></div>
+        <div class="agenda-owner"><h4>John Sheridan — Roanoke operations</h4>
+          <ul><li>Production targets · Bell/shop-floor discipline · 48-hr schedule lock · July 27 agenda · Manny/Gordy/Jeff/Jerry transitions · PackSmart training delay · Marsh McLennan/3R</li></ul></div>
+        <div class="agenda-owner"><h4>Walt Shiels — Legacy &amp; sales leadership</h4>
+          <ul><li>P&amp;G growth · Team-selling philosophy · Hunter mentorship · Suzanne/Heidi transition · Future sales talent · Plaud knowledge capture</li></ul></div>
+        <div class="agenda-owner"><h4>Michael Dercksen — CFO &amp; expanding role</h4>
+          <ul><li>Cold foil go-live · ERP PM recommendation · AMS AI integration · HubSpot budget · Rate standards / Sep 1 · Banking update · HSA/401(k)/healthcare</li></ul></div>
+        <div class="agenda-owner"><h4>Robin Rivera — HR &amp; talent development</h4>
+          <ul><li>Exit interviews · Career paths · Talent sheets · July dev conversations · Dale Carnegie/public speaking · Press room pay scale · Estimator posting · Huddle feedback</li></ul></div>
+      </div>
+
+      <div class="agenda-block">
+        <h3>3. Key decision topics</h3>
+        <p class="agenda-meta"><strong>45–60 min</strong> · Lead: Mitchell / Max / Michael / Josh</p>
+
+        <p><strong>A. Production discipline &amp; schedule lock</strong> — Bell system results, 48-hr lock pilot, exceptions, metrics, manager support to reduce churn and OT.</p>
+        <div class="decision-box"><span>Decision needed</span>Confirm formal 48-hour schedule-lock pilot and measurement owner.</div>
+
+        <p style="margin-top:0.85rem"><strong>B. Overtime, burnout &amp; staffing</strong> — OT trend vs. $60K/week, morale, shift/weekend rotation, stamping/embossing/estimating/CS/structural gaps.</p>
+        <div class="decision-box"><span>Decision needed</span>Agree on next 30-day labor-coverage experiment or manager proposal process.</div>
+
+        <p style="margin-top:0.85rem"><strong>C. Profitable growth &amp; capacity fit</strong> — Pipeline quality vs. volume, P&amp;G opportunities, small-customer fit, oversold evaluation, marketing spend direction.</p>
+        <div class="decision-box"><span>Decision needed</span>Define the first version of Arkay's profitable-growth filter.</div>
+
+        <p style="margin-top:0.85rem"><strong>D. ERP / AI / CRM path</strong> — HubSpot rollout, AMS integration, AI quick wins, CERM/HighFlow costs, ERP PM, decision-group cadence.</p>
+        <div class="decision-box"><span>Decision needed</span>Confirm owners, timing, and next decision point for HubSpot, AMS, ERP PM, and AI quick wins.</div>
+
+        <p style="margin-top:0.85rem"><strong>E. Rate standards &amp; profitability</strong> — Michael/Robert weekly review, Sep 1 readiness, connection to estimating/pricing, annual cadence.</p>
+        <div class="decision-box"><span>Decision needed</span>Confirm Sep 1 requirements and monthly leadership review needs.</div>
+      </div>
+
+      <div class="agenda-block">
+        <h3>4. Roanoke immersion — week of July 27</h3>
+        <p class="agenda-meta"><strong>20–30 min</strong> · Lead: Max / Brian / John</p>
+        <ul>
+          <li>Mike Sanctuary glue-line tooling · Complex repeat-job shadowing · Make-ready videos · Inline embossing demo</li>
+          <li>Closeout variance review · IT support for recording/docs · Brian/Max/John knowledge-transfer structure · Michael immersion if appropriate</li>
+        </ul>
+        <div class="decision-box"><span>Output needed</span>Final Roanoke agenda, owner list, and prep assignments.</div>
+      </div>
+
+      <div class="agenda-block">
+        <h3>5. Succession &amp; leadership development</h3>
+        <p class="agenda-meta"><strong>25–30 min</strong> · Lead: Mitchell / Robin / Walt / Brian</p>
+        <ul>
+          <li>Max operational decision-making · Josh sales leadership &amp; whale-hunting SOP · Suzanne/Heidi transition · Hunter mentorship · Future sales talent · Manager ownership · Career paths &amp; July dev conversations</li>
+        </ul>
+        <div class="decision-box"><span>Decision needed</span>Top 3 leadership-development priorities for the next 30 days.</div>
+      </div>
+
+      <div class="agenda-block">
+        <h3>6. Risks &amp; watch items</h3>
+        <p class="agenda-meta"><strong>15 min</strong> · Lead: Facilitator</p>
+        <ul>
+          <li>Overtime burnout · Lower-margin work when oversold · ERP/AI/CRM delay · Estimator &amp; stamping/embossing gaps · Marketing vs. capacity · Marsh McLennan/3R · Knowledge capture consistency</li>
+        </ul>
+      </div>
+
+      <div class="agenda-block">
+        <h3>7. New items from prep document</h3>
+        <p class="agenda-meta"><strong>20 min</strong> · Lead: Each owner</p>
+        <ul><li>What's new · New challenges/opportunities · What they need from the group · Proposed next 30-day focus</li></ul>
+      </div>
+
+      <div class="agenda-block">
+        <h3>8. Next 30-day commitments</h3>
+        <p class="agenda-meta"><strong>25–30 min</strong> · Lead: Facilitator</p>
+        <p>Each owner confirms 1–3 commitments with owner, deadline, definition of done, and dependencies.</p>
+        <ul>
+          <li>48-hour schedule-lock pilot &amp; measurement owner</li>
+          <li>HubSpot rollout / AMS integration decision</li>
+          <li>AI/ERP decision-group next step</li>
+          <li>July 27 Roanoke agenda finalized</li>
+          <li>Rate standards toward Sep 1 go-live</li>
+          <li>Profitable-growth / capacity-fit filter</li>
+          <li>Career paths &amp; July dev conversations</li>
+          <li>Plaud/Copilot knowledge-capture once legal releases complete</li>
+        </ul>
+      </div>
+
+      <div class="agenda-block">
+        <h3>9. Milestones &amp; calendar</h3>
+        <p class="agenda-meta"><strong>5–10 min</strong></p>
+        <ul>
+          <li><strong>Jul 1</strong> — HSA to Pinnacle · <strong>Jul 22</strong> — Hauppauge luncheon · <strong>Jul 27 week</strong> — Roanoke immersion</li>
+          <li><strong>Jul 29</strong> — Roanoke luncheon / Session 8 · <strong>Aug–Sep</strong> — Suzanne transition · <strong>Sep 1</strong> — Rates go-live</li>
+          <li><strong>Q4/Q1</strong> — Public speaking Josh &amp; Max · <strong>Q4</strong> — Gordy, Jeff, Manny transitions</li>
+        </ul>
+      </div>
+
+      <div class="agenda-block">
+        <h3>10. Close</h3>
+        <p class="agenda-meta"><strong>5 min</strong> · Lead: Mitchell / Facilitator</p>
+        <ul>
+          <li>Confirm action register · Next meeting date &amp; prep expectations · Accountability: status, blockers, and proposed next moves at Session 8</li>
+        </ul>
+      </div>
     </section>
 
     <section class="block" id="prep">

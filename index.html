@@ -29,7 +29,7 @@
       --red-soft: #fef2f2;
       --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 14px rgba(15, 23, 42, 0.05);
       --radius: 12px;
-      --header-h: 10.5rem;
+      --header-h: 8.5rem;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -53,34 +53,46 @@
       box-shadow: var(--shadow);
     }
 
-    .logo-bar {
-      background: linear-gradient(180deg, #faf8f4 0%, #fff 100%);
-      border-bottom: 1px solid var(--border);
-      padding: 0.85rem 1.25rem;
-      text-align: center;
-    }
-
-    .site-logo {
-      height: clamp(44px, 8vw, 64px);
-      width: auto;
-      max-width: 240px;
-      object-fit: contain;
-      display: inline-block;
-    }
-
     .header-inner {
       max-width: 72rem;
       margin: 0 auto;
-      padding: 0.75rem 1.25rem 0.65rem;
+      padding: 0.65rem 1.25rem 0.55rem;
     }
 
     .brand-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      margin-bottom: 0.65rem;
+      gap: 0.85rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .logo-link {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      text-decoration: none;
+      line-height: 0;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .logo-link:hover { opacity: 0.82; transform: scale(1.02); }
+
+    .site-logo {
+      height: clamp(36px, 5.5vw, 50px);
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
+      display: block;
+      background: transparent;
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem;
+      margin-left: auto;
     }
 
     .brand {
@@ -702,6 +714,7 @@
     @media (max-width: 640px) {
       nav.snap-dots { display: none; }
       .brand { font-size: 0.9rem; }
+      .brand-meta { margin-left: 0; width: 100%; justify-content: space-between; }
       .tab-nav a { font-size: 0.7rem; padding: 0.4rem 0.6rem; }
     }
 
@@ -774,13 +787,15 @@
 <body>
 
 <header class="site-header">
-  <div class="logo-bar">
-    <img src="arkay-logo.png" alt="Arkay Packaging" class="site-logo" width="240" height="64" />
-  </div>
   <div class="header-inner">
     <div class="brand-row">
-      <div class="brand">Arkay Succession Planning</div>
-      <span class="date-pill">Session 7 · June 23, 2026</span>
+      <a href="https://www.linkedin.com/company/arkaypackaging/?viewAsMember=true" class="logo-link" target="_blank" rel="noopener noreferrer" aria-label="Arkay Packaging on LinkedIn">
+        <img src="arkay-logo.png" alt="Arkay Packaging" class="site-logo" width="160" height="50" />
+      </a>
+      <div class="brand-meta">
+        <div class="brand">Arkay Succession Planning</div>
+        <span class="date-pill">Session 7 · June 23, 2026</span>
+      </div>
     </div>
     <nav class="tab-nav" aria-label="Sections">
       <a href="#hero" class="active">Overview</a>

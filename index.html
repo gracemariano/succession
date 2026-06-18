@@ -520,6 +520,88 @@
       .priority-card { grid-template-columns: 1fr; }
       .priority-card .pnum { font-size: 2rem; }
     }
+
+    @media print {
+      @page {
+        size: letter portrait;
+        margin: 0.4in 0.45in;
+      }
+
+      html { font-size: 10pt; }
+
+      body {
+        background: #fff !important;
+        color: #000;
+        font-size: 0.95rem;
+        line-height: 1.45;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page-nav { display: none !important; }
+
+      .wrap {
+        max-width: none;
+        width: 142.857%;
+        padding: 0;
+        margin: 0;
+        transform: scale(0.7);
+        transform-origin: top left;
+      }
+
+      .block,
+      .prep-owner,
+      .owner-block,
+      .priority-card,
+      .agenda-owner,
+      .decision-box,
+      .stat-box,
+      .metric,
+      .action-group,
+      .sub-card {
+        box-shadow: none !important;
+        page-break-inside: avoid;
+      }
+
+      .section-divider {
+        page-break-before: always;
+        background: #1e4d8c !important;
+        color: #fff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .section-title {
+        page-break-after: avoid;
+      }
+
+      table {
+        page-break-inside: auto;
+        font-size: 0.88rem;
+      }
+
+      tr { page-break-inside: avoid; }
+
+      .stat-row .big,
+      .metric .big,
+      .priority-card .pnum,
+      .stat-box .big {
+        font-size: 1.65rem;
+      }
+
+      .prep-blank {
+        min-height: 2rem;
+        border-style: solid;
+      }
+
+      a { color: inherit; text-decoration: none; }
+
+      h1 { font-size: 1.5rem; }
+      h2.section-title { font-size: 0.95rem; }
+      h3 { font-size: 0.92rem; }
+
+      .footer-note { margin-top: 1rem; }
+    }
   </style>
 </head>
 <body>

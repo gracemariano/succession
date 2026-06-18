@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arkay Succession Planning — Session 6 · May 20, 2026</title>
+  <title>Arkay Succession Planning — Session 7 · June 23, 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -301,6 +301,161 @@
       margin-top: 2rem;
     }
 
+    .page-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-nav a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+      padding: 0.4rem 0.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .page-nav a:hover { background: var(--navy-soft); }
+
+    .meeting-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .meta-item {
+      background: var(--navy-soft);
+      border: 1px solid var(--border);
+      padding: 0.75rem 0.9rem;
+    }
+
+    .meta-item .lbl {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+
+    .meta-item .val {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-top: 0.2rem;
+    }
+
+    .agenda-row td:first-child {
+      font-weight: 700;
+      color: var(--navy);
+      white-space: nowrap;
+      width: 7rem;
+    }
+
+    .prep-intro {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .legend span { padding: 0.25rem 0.55rem; border: 1px solid var(--border); }
+    .legend .done { background: var(--green-soft); color: var(--green); }
+    .legend .progress { background: var(--amber-soft); color: var(--amber); }
+    .legend .incomplete { background: var(--red-soft); color: var(--red); }
+
+    .status {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.15rem 0.45rem;
+      white-space: nowrap;
+    }
+
+    .status.done { background: var(--green-soft); color: var(--green); }
+    .status.progress { background: var(--amber-soft); color: var(--amber); }
+    .status.incomplete { background: var(--red-soft); color: var(--red); }
+
+    .prep-owner {
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.1rem;
+      background: var(--muted-bg);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--navy);
+    }
+
+    .prep-owner h3 {
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin: 0 0 0.15rem;
+    }
+
+    .prep-owner .role {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+
+    .prep-table { font-size: 0.92rem; }
+    .prep-table td:first-child { font-weight: 600; width: 32%; }
+
+    .prep-blank {
+      margin-top: 0.85rem;
+      padding: 0.75rem 0.9rem;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      min-height: 3.5rem;
+    }
+
+    .prep-blank h4 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .prep-blank p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin: 0;
+    }
+
+    .section-divider {
+      margin: 3rem 0 2rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .section-divider h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .section-divider p {
+      margin: 0.35rem 0 0;
+      font-size: 0.92rem;
+      opacity: 0.85;
+    }
+
     @media (max-width: 600px) {
       .priority-card { grid-template-columns: 1fr; }
       .priority-card .pnum { font-size: 2rem; }
@@ -310,10 +465,261 @@
 <body>
   <div class="wrap">
 
+    <nav class="page-nav" aria-label="Page sections">
+      <a href="#agenda">Agenda</a>
+      <a href="#prep">Prep checklist</a>
+      <a href="#session6">Session 6 notes</a>
+    </nav>
+
     <header>
       <span class="badge">Confidential · Succession Planning</span>
+      <h1>Session 7 — June 23, 2026</h1>
+      <p class="lede">30-day accountability review · Reviewing commitments from the May 20, 2026 session</p>
+      <div class="meeting-meta">
+        <div class="meta-item"><div class="lbl">Date</div><div class="val">Monday, June 23, 2026</div></div>
+        <div class="meta-item"><div class="lbl">Time</div><div class="val">10:00 AM – 2:00 PM</div></div>
+        <div class="meta-item"><div class="lbl">Location</div><div class="val">Southampton · Mitchell's house</div></div>
+      </div>
+    </header>
+
+    <section class="block" id="agenda">
+      <h2 class="section-title">Meeting agenda</h2>
+      <table class="agenda-row">
+        <thead><tr><th>Time</th><th>Topic</th></tr></thead>
+        <tbody>
+          <tr><td>10:00</td><td><strong>Welcome &amp; objectives</strong> — Session 7 purpose, ground rules, prep doc review format</td></tr>
+          <tr><td>10:15</td><td><strong>Strategic opening</strong> — Mitchell: priorities since May 20 (schedule lock, OT, ERP/AI, rates review)</td></tr>
+          <tr><td>10:30</td><td><strong>Part 1 — Prior commitment review</strong> — Each owner presents updated status (~8 min each): Mitchell, Josh, Max, Brian, John Sheridan, Walt, Michael, Robin</td></tr>
+          <tr><td>11:45</td><td><strong>Break</strong></td></tr>
+          <tr><td>11:55</td><td><strong>Part 2 — What's new</strong> — Initiatives, goals, or processes each owner brings forward</td></tr>
+          <tr><td>12:20</td><td><strong>Part 3 — Challenges &amp; opportunities</strong> — New issues, blockers, and upside since last session</td></tr>
+          <tr><td>12:45</td><td><strong>Lunch</strong></td></tr>
+          <tr><td>1:15</td><td><strong>Part 4 — Next 30 days</strong> — Focus areas and commitments through Session 8</td></tr>
+          <tr><td>1:40</td><td><strong>Cross-cutting discussion</strong> — OT &amp; shift coverage · 48-hr schedule lock results · HubSpot/AMS · ERP decision group · Sep 1 rates go-live</td></tr>
+          <tr><td>1:50</td><td><strong>Wrap-up</strong> — Decisions, action register updates, upcoming dates (Jul 27 Roanoke, Jul 29 Session 8, Aug/Sep transitions)</td></tr>
+          <tr><td>2:00</td><td><strong>Adjourn</strong></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="block" id="prep">
+      <h2 class="section-title">Session 7 prep checklist</h2>
+      <p class="prep-intro">Review Part 1 below before the meeting. Complete Parts 2–4 for your area and bring to Southampton.</p>
+      <div class="legend">
+        <span class="done">Done</span>
+        <span class="progress">In progress</span>
+        <span class="incomplete">Incomplete</span>
+      </div>
+
+      <div class="prep-owner" id="prep-mitchell">
+        <h3>Mitchell Kaneff</h3>
+        <p class="role">Owner / Strategic Oversight</p>
+        <table class="prep-table">
+          <thead><tr><th>Prior commitment</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Production discipline (bell system)</td><td><span class="status done">Done</span></td><td>Bell installed/tested; go-live Tuesday after toolbox briefings; John to monitor.</td></tr>
+            <tr><td>May 21 in-person sales meeting</td><td><span class="status done">Done</span></td><td>Confirmed May 21; Josh ran meeting; PacSmart/QR training included.</td></tr>
+            <tr><td>HubSpot / CRM implementation</td><td><span class="status progress">In progress</span></td><td>Moving forward; Josh/Max/Michael own rollout, budget, AMS integration.</td></tr>
+            <tr><td>AI recording (Plaud/Copilot) standard</td><td><span class="status progress">In progress</span></td><td>Plaud distributed to Walt, Brian, Max; legal releases with Greg/Todd pending.</td></tr>
+            <tr><td>Fourth-gen narrative (Grace Williams)</td><td><span class="status progress">In progress</span></td><td>Final outreach planned; remove if no response.</td></tr>
+            <tr><td>Glue-line robotics exploration</td><td><span class="status progress">In progress</span></td><td>Monitor Boston Dynamics; revisit gluer-end palletizing plan.</td></tr>
+          </tbody>
+        </table>
+        <div class="prep-blank"><h4>Part 2 — What's new</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 3 — New challenges &amp; opportunities</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 4 — Focus areas (next 30 days)</h4><p>Complete before meeting</p></div>
+      </div>
+
+      <div class="prep-owner" id="prep-josh">
+        <h3>Josh Kaneff</h3>
+        <p class="role">Sales &amp; External Relationships</p>
+        <table class="prep-table">
+          <thead><tr><th>Prior commitment</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Grow pipeline (~3.5M cartons)</td><td><span class="status progress">In progress</span></td><td>Target exceeded; focus on profitable growth, capacity fit, customer mix.</td></tr>
+            <tr><td>Weekly cross-functional huddles</td><td><span class="status progress">In progress</span></td><td>To launch with CS, planning, sales, imaging, structural, estimating, HR.</td></tr>
+            <tr><td>CRM adoption across sales</td><td><span class="status progress">In progress</span></td><td>HubSpot rollout; training plan; AMS integration decision needed.</td></tr>
+            <tr><td>Production release tracking</td><td><span class="status progress">In progress</span></td><td>Redirected — AMS release report exists; carry only if needed for visibility.</td></tr>
+            <tr><td>New business pipeline</td><td><span class="status progress">In progress</span></td><td>P&amp;G/Oral-B, Femcare active; evaluate by profitability and capacity.</td></tr>
+            <tr><td>P&amp;G Cincinnati transition</td><td><span class="status progress">In progress</span></td><td>Germany complete; growth through Oral-B, Femcare, Olay.</td></tr>
+            <tr><td>Dynamic coding / QR sales training</td><td><span class="status progress">In progress</span></td><td>May 21 training planned; QR cost adder still needed from Steve.</td></tr>
+            <tr><td>Dale Carnegie / public speaking</td><td><span class="status progress">In progress</span></td><td>Late summer/fall timing with Robin; Q4/Q1 course for Josh &amp; Max.</td></tr>
+            <tr><td>Germany trip with Max</td><td><span class="status done">Done</span></td><td>Completed; SOP/process and innovation findings to share.</td></tr>
+            <tr><td>Whale hunting SOP</td><td><span class="status progress">In progress</span></td><td>Develop with HubSpot and capacity guardrails.</td></tr>
+            <tr><td>Estimating / structural depth</td><td><span class="status progress">In progress</span></td><td>Estimator on LinkedIn; RIT hire Jun 8; Nico returns after CS transition.</td></tr>
+            <tr><td>Heidi rapport / Suzanne transition</td><td><span class="status progress">In progress</span></td><td>Heidi conversation tied to Suzanne move (Jul/Aug-Sep).</td></tr>
+          </tbody>
+        </table>
+        <div class="prep-blank"><h4>Part 2 — What's new</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 3 — New challenges &amp; opportunities</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 4 — Focus areas (next 30 days)</h4><p>Complete before meeting</p></div>
+      </div>
+
+      <div class="prep-owner" id="prep-max">
+        <h3>Max Kaneff</h3>
+        <p class="role">Operations &amp; Internal Systems</p>
+        <table class="prep-table">
+          <thead><tr><th>Prior commitment</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>CRM rollout execution</td><td><span class="status progress">In progress</span></td><td>HubSpot nearly ready; AMS integration pending with Hector/Michael/Josh.</td></tr>
+            <tr><td>ERP + AI initiatives</td><td><span class="status progress">In progress</span></td><td>CERM demo scheduled; HighFlow follow-up; smaller decision group needed.</td></tr>
+            <tr><td>ERP steering committee</td><td><span class="status progress">In progress</span></td><td>Repurpose into smaller AI/ERP meeting (Mitchell, Max, Michael, Greg, Hector).</td></tr>
+            <tr><td>Roanoke immersion cadence</td><td><span class="status progress">In progress</span></td><td>July 27 week planned — Brian, Mike Sanctuary, glue-line tools, make-ready videos.</td></tr>
+            <tr><td>Complex job shadowing</td><td><span class="status progress">In progress</span></td><td>Incorporate into July Roanoke immersion.</td></tr>
+            <tr><td>Estimating training with Kelly</td><td><span class="status progress">In progress</span></td><td>Schedule RDS seat time with Kelly.</td></tr>
+            <tr><td>Karass + Excel courses</td><td><span class="status done">Done</span></td><td>Karass complete; Excel continues in June.</td></tr>
+            <tr><td>Chain of command escalation</td><td><span class="status progress">In progress</span></td><td>Visible in morning/closeout meetings.</td></tr>
+            <tr><td>CERM demo / HighFlow costs</td><td><span class="status progress">In progress</span></td><td>CERM demo scheduled; all-in HighFlow pricing still needed.</td></tr>
+            <tr><td>Glue-line filming / make-ready docs</td><td><span class="status progress">In progress</span></td><td>July 27 Roanoke; use closeout variance reports for priority jobs.</td></tr>
+            <tr><td>Cold foil measurement</td><td><span class="status progress">In progress</span></td><td>Michael/Curtis; first week of June go-live target.</td></tr>
+            <tr><td>Rate standards review</td><td><span class="status progress">In progress</span></td><td>Michael/Robert leading; Sep 1 go-live; annual cadence.</td></tr>
+          </tbody>
+        </table>
+        <div class="prep-blank"><h4>Part 2 — What's new</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 3 — New challenges &amp; opportunities</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 4 — Focus areas (next 30 days)</h4><p>Complete before meeting</p></div>
+      </div>
+
+      <div class="prep-owner" id="prep-brian">
+        <h3>Brian Hopkins</h3>
+        <p class="role">Operations Knowledge Transfer</p>
+        <table class="prep-table">
+          <thead><tr><th>Prior commitment</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Max training &amp; immersion</td><td><span class="status progress">In progress</span></td><td>Ongoing regular work with Max on operations and decisions.</td></tr>
+            <tr><td>Accountability systems</td><td><span class="status progress">In progress</span></td><td>Explain the "why" after morning meetings.</td></tr>
+            <tr><td>Staffing gaps support</td><td><span class="status progress">In progress</span></td><td>CS backfills strong; Anna for Nico mid-June; Nico returns to structural.</td></tr>
+            <tr><td>Max immersion plan structure</td><td><span class="status progress">In progress</span></td><td>July 27 Roanoke — glue-line tools, make-ready videos, repeat jobs.</td></tr>
+            <tr><td>Morning-meeting teaching</td><td><span class="status progress">In progress</span></td><td>Continues; lessons saved for Roanoke follow-up.</td></tr>
+            <tr><td>Chain-of-command through Max</td><td><span class="status progress">In progress</span></td><td>As Max increases operational involvement.</td></tr>
+            <tr><td>Brian's Packaging Bible</td><td><span class="status progress">In progress</span></td><td>Greg Pandolfi digitizing into usable document.</td></tr>
+            <tr><td>Planner strategy meetings</td><td><span class="status progress">In progress</span></td><td>Shifted to Josh's huddle structure.</td></tr>
+            <tr><td>Roanoke visits with Max</td><td><span class="status progress">In progress</span></td><td>June visit pushed; July 27 week selected.</td></tr>
+            <tr><td>Mike Sanctuary glue-line meeting</td><td><span class="status progress">In progress</span></td><td>Planned July 27 with Max and Brian.</td></tr>
+            <tr><td>Lasercam / INX Chicago visits</td><td><span class="status incomplete">Incomplete</span></td><td>On hold; possible July revisit.</td></tr>
+            <tr><td>Knowledge capture (Plaud)</td><td><span class="status progress">In progress</span></td><td>Begin formal recording of relevant conversations.</td></tr>
+          </tbody>
+        </table>
+        <div class="prep-blank"><h4>Part 2 — What's new</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 3 — New challenges &amp; opportunities</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 4 — Focus areas (next 30 days)</h4><p>Complete before meeting</p></div>
+      </div>
+
+      <div class="prep-owner" id="prep-john">
+        <h3>John Sheridan</h3>
+        <p class="role">Roanoke Operations (Remote)</p>
+        <table class="prep-table">
+          <thead><tr><th>Prior commitment</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Daily production targets</td><td><span class="status progress">In progress</span></td><td>Kaizen continues; improved volume; make-readies and job mix still affect results.</td></tr>
+            <tr><td>Shop floor discipline</td><td><span class="status progress">In progress</span></td><td>Positive accountability; bell system supports break/throughput discipline.</td></tr>
+            <tr><td>Max Roanoke immersion coordination</td><td><span class="status progress">In progress</span></td><td>July 27 — glue-line tooling, make-ready videos, inline embossing demo.</td></tr>
+            <tr><td>Manny elevation</td><td><span class="status progress">In progress</span></td><td>Off-shift leadership opportunities evaluated.</td></tr>
+            <tr><td>Gordy retirement package</td><td><span class="status progress">In progress</span></td><td>Q4 2026 target unchanged.</td></tr>
+            <tr><td>Jeff Drumheller transition</td><td><span class="status progress">In progress</span></td><td>Q4 target; tied to Hauppauge restructuring.</td></tr>
+            <tr><td>Jerry contingency backups</td><td><span class="status progress">In progress</span></td><td>Backups in prepress; covered for now.</td></tr>
+            <tr><td>Hayden Packsmart training</td><td><span class="status incomplete">Incomplete</span></td><td>Delayed — workload; cannot send people offsite now.</td></tr>
+            <tr><td>Ops exposure visits (Brian, Michael)</td><td><span class="status progress">In progress</span></td><td>Still in transition.</td></tr>
+            <tr><td>Marsh McLennan / 3R proposal</td><td><span class="status progress">In progress</span></td><td>Send to Michael; Anthony report replacement still open.</td></tr>
+            <tr><td>Roanoke immersion agenda</td><td><span class="status progress">In progress</span></td><td>July 27 — Mike Sanctuary, videos, glue-line tools, embossing demo.</td></tr>
+            <tr><td>ESKO/Phoenix AI estimating escalation</td><td><span class="status progress">In progress</span></td><td>Escalate with appropriate senior contacts this week.</td></tr>
+          </tbody>
+        </table>
+        <div class="prep-blank"><h4>Part 2 — What's new</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 3 — New challenges &amp; opportunities</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 4 — Focus areas (next 30 days)</h4><p>Complete before meeting</p></div>
+      </div>
+
+      <div class="prep-owner" id="prep-walt">
+        <h3>Walt Shiels</h3>
+        <p class="role">Legacy Building &amp; Sales Leadership</p>
+        <table class="prep-table">
+          <thead><tr><th>Prior commitment</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>P&amp;G formal announcement Cincinnati</td><td><span class="status done">Done</span></td><td>Completed; Oral-B spin brushes and Femcare discussions continue.</td></tr>
+            <tr><td>Team-selling philosophy</td><td><span class="status progress">In progress</span></td><td>"Sell the company, not just the order" — ongoing reinforcement.</td></tr>
+            <tr><td>Hunter Goldman mentorship</td><td><span class="status progress">In progress</span></td><td>2 days/week; attendance concerns; May report to review.</td></tr>
+            <tr><td>Suzanne sales transition</td><td><span class="status progress">In progress</span></td><td>Heidi conversation July; Suzanne Aug/Sep starting Sol de Janeiro.</td></tr>
+            <tr><td>Future sales from within</td><td><span class="status progress">In progress</span></td><td>Michael Prince, Amanda — ongoing identification.</td></tr>
+            <tr><td>Knowledge capture (Plaud)</td><td><span class="status progress">In progress</span></td><td>Begin formal recording of relevant conversations.</td></tr>
+          </tbody>
+        </table>
+        <div class="prep-blank"><h4>Part 2 — What's new</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 3 — New challenges &amp; opportunities</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 4 — Focus areas (next 30 days)</h4><p>Complete before meeting</p></div>
+      </div>
+
+      <div class="prep-owner" id="prep-michael">
+        <h3>Michael Dercksen</h3>
+        <p class="role">CFO &amp; Expanding Role</p>
+        <table class="prep-table">
+          <thead><tr><th>Prior commitment</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Cold foil tracking</td><td><span class="status progress">In progress</span></td><td>Switch/equipment issue; first week of June go-live target.</td></tr>
+            <tr><td>ERP PM selection</td><td><span class="status progress">In progress</span></td><td>~$100K / 18 mo at ~$225/hr; pending Max/decision-group alignment.</td></tr>
+            <tr><td>AI integration with AMS</td><td><span class="status progress">In progress</span></td><td>Hector exploring; Estee Lauder, forecasting, estimating priorities.</td></tr>
+            <tr><td>Max finance education → Excel</td><td><span class="status done">Done</span></td><td>Redirected to Excel courses underway in June.</td></tr>
+            <tr><td>HubSpot budgeting</td><td><span class="status progress">In progress</span></td><td>Budgeting/adoption continues; AMS integration open.</td></tr>
+            <tr><td>Rate standards initiative</td><td><span class="status progress">In progress</span></td><td>Weekly with Robert; first review in ~20 years; Sep 1 go-live.</td></tr>
+            <tr><td>Operational knowledge / Roanoke visits</td><td><span class="status progress">In progress</span></td><td>Ongoing; immerse more during Brian/Max operational work.</td></tr>
+          </tbody>
+        </table>
+        <div class="prep-blank"><h4>Part 2 — What's new</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 3 — New challenges &amp; opportunities</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 4 — Focus areas (next 30 days)</h4><p>Complete before meeting</p></div>
+      </div>
+
+      <div class="prep-owner" id="prep-robin">
+        <h3>Robin Rivera</h3>
+        <p class="role">HR / Talent Development (Remote)</p>
+        <table class="prep-table">
+          <thead><tr><th>Prior commitment</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Exit interviews</td><td><span class="status done">Done</span></td><td>SurveyMonkey implemented; 1–2 responses so far.</td></tr>
+            <tr><td>Career path documentation</td><td><span class="status progress">In progress</span></td><td>Forms with managers; validate before employee confirmation.</td></tr>
+            <tr><td>Training + onboarding support</td><td><span class="status progress">In progress</span></td><td>Check-ins with new hires, managers, trainers.</td></tr>
+            <tr><td>Production discipline monitoring</td><td><span class="status progress">In progress</span></td><td>Supports accountability follow-up.</td></tr>
+            <tr><td>Talent mapping + org chart</td><td><span class="status done">Done</span></td><td>Completed to supervisor level.</td></tr>
+            <tr><td>Dale Carnegie / public speaking</td><td><span class="status progress">In progress</span></td><td>Late summer/fall with Josh; Q4/Q1 for Josh &amp; Max.</td></tr>
+            <tr><td>Orientation / handbook</td><td><span class="status done">Done</span></td><td>Rolled out; Melanie, Anna; Nicole onboarding started.</td></tr>
+            <tr><td>Career path distribution</td><td><span class="status progress">In progress</span></td><td>Talent sheets to managers; track progress.</td></tr>
+            <tr><td>July development conversations</td><td><span class="status progress">In progress</span></td><td>Name must not imply comp review.</td></tr>
+            <tr><td>Customer email groups</td><td><span class="status done">Done</span></td><td>Decided against — inbox flood risk.</td></tr>
+            <tr><td>Press room pay scale</td><td><span class="status progress">In progress</span></td><td>Continues; manager input when Mike Forth returns.</td></tr>
+            <tr><td>Project Manager job description</td><td><span class="status progress">In progress</span></td><td>Tied to ERP PM / consultant decision.</td></tr>
+            <tr><td>Employee engagement iPad interviews</td><td><span class="status progress">In progress</span></td><td>Redirected to huddle/employee voice process.</td></tr>
+          </tbody>
+        </table>
+        <div class="prep-blank"><h4>Part 2 — What's new</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 3 — New challenges &amp; opportunities</h4><p>Complete before meeting</p></div>
+        <div class="prep-blank"><h4>Part 4 — Focus areas (next 30 days)</h4><p>Complete before meeting</p></div>
+      </div>
+
+      <h3 style="margin-top:1.5rem;color:var(--navy)">Upcoming milestones</h3>
+      <table>
+        <thead><tr><th>Date</th><th>Milestone</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Jun 23, 2026</strong></td><td>Session 7 — this meeting</td></tr>
+          <tr><td><strong>Jul 1, 2026</strong></td><td>HSA transition to Pinnacle</td></tr>
+          <tr><td><strong>Jul 22, 2026</strong></td><td>Hauppauge summer luncheon</td></tr>
+          <tr><td><strong>Week of Jul 27</strong></td><td>Roanoke immersion — Max, Brian, Mike; make-ready, glue-line, embossing</td></tr>
+          <tr><td><strong>Jul 29, 2026</strong></td><td>Roanoke luncheon; Session 8; John O'Connor onsite</td></tr>
+          <tr><td><strong>Aug–Sep 2026</strong></td><td>Suzanne sales transition</td></tr>
+          <tr><td><strong>Sep 1, 2026</strong></td><td>Rates go-live; ERP vendor decision under review</td></tr>
+          <tr><td><strong>Q4 2026</strong></td><td>Gordy retirement; Jeff transition; Manny elevation</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="section-divider" id="session6">
+      <h2>Previous meeting — Session 6 notes</h2>
+      <p>May 20, 2026 · Reference archive below</p>
+    </div>
+
+    <header>
+      <span class="badge">Session 6 archive</span>
       <h1>Session 6 Meeting Notes</h1>
-      <p class="lede">May 20, 2026 · Next session <span class="hl">June 23, 2026</span></p>
+      <p class="lede">May 20, 2026</p>
     </header>
 
     <div class="stat-row">
@@ -653,7 +1059,7 @@
       </div>
     </section>
 
-    <p class="footer-note">Arkay Packaging · Succession Planning Session 6 · May 20, 2026 · Confidential</p>
+    <p class="footer-note">Arkay Packaging · Succession Planning · Session 7 June 23, 2026 · Session 6 archive May 20, 2026 · Confidential</p>
   </div>
 </body>
 </html>

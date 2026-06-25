@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
-"""Generate Session 7 summary download from current index.html."""
+"""Generate Session 7 summary PDF from current index.html."""
 
 import re
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).parent
 INDEX = ROOT / "index.html"
-OUT = ROOT / "downloads" / "session-7-summary.html"
+HTML_OUT = ROOT / "downloads" / "session-7-summary.html"
+PDF_OUT = ROOT / "downloads" / "session-7-summary.pdf"
+
+CHROME_PATHS = [
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/Applications/Chromium.app/Contents/MacOS/Chromium",
+]
 
 STYLE = """
 <style>
@@ -86,12 +93,6 @@ STYLE = """
     font-size: 11pt;
     color: #666;
   }
-  @media print {
-    body { padding: 0; font-size: 14pt; }
-    h1 { font-size: 22pt; }
-    h2 { font-size: 16pt; }
-    h3 { font-size: 14pt; }
-  }
 </style>
 """
 
@@ -111,6 +112,30 @@ def clean(fragment: str) -> str:
     return fragment
 
 
+def find_chrome() -> str:
+    for path in CHROME_PATHS:
+        if Path(path).exists():
+            return path
+    raise FileNotFoundError("Chrome/Chromium not found for PDF generation")
+
+
+def html_to_pdf(html_path: Path, pdf_path: Path) -> None:
+    chrome = find_chrome()
+    file_url = html_path.resolve().as_uri()
+    subprocess.run(
+        [
+            chrome,
+            "--headless=new",
+            "--disable-gpu",
+            "--no-pdf-header-footer",
+            f"--print-to-pdf={pdf_path.resolve()}",
+            file_url,
+        ],
+        check=True,
+        capture_output=True,
+    )
+
+
 def main() -> None:
     html = INDEX.read_text(encoding="utf-8")
     notes = clean(extract_section(html, "session7-notes"))
@@ -121,7 +146,6 @@ def main() -> None:
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Arkay Session 7 Summary Meeting Notes</title>
   {STYLE}
 </head>
@@ -131,13 +155,14 @@ def main() -> None:
   <strong>Location:</strong> Southampton · Mitchell's house<br>
   <strong>Confidential</strong> · Arkay Succession Planning</p>
   {body}
-  <p class="footer">Arkay Packaging · Succession Planning · Session 7 · Confidential · Generated from live website</p>
+  <p class="footer">Arkay Packaging · Succession Planning · Session 7 · Confidential</p>
 </body>
 </html>
 """
-    OUT.parent.mkdir(exist_ok=True)
-    OUT.write_text(doc, encoding="utf-8")
-    print(f"Wrote {OUT}")
+    HTML_OUT.parent.mkdir(exist_ok=True)
+    HTML_OUT.write_text(doc, encoding="utf-8")
+    html_to_pdf(HTML_OUT, PDF_OUT)
+    print(f"Wrote {PDF_OUT}")
 
 
 if __name__ == "__main__":

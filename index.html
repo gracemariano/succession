@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=1280" />
   <title>Arkay Succession Planning — Session 7 · June 23, 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,6 +37,7 @@
     html {
       scroll-behavior: smooth;
       scroll-padding-top: var(--header-h);
+      min-width: 1200px;
     }
 
     body {
@@ -45,6 +46,7 @@
       line-height: 1.65;
       color: var(--text);
       background: var(--bg);
+      min-width: 1200px;
     }
 
     .site-header {
@@ -64,7 +66,6 @@
 
     .brand-row {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       gap: 0.85rem;
       margin-bottom: 0.55rem;
@@ -82,7 +83,7 @@
     .logo-link:hover { opacity: 0.82; transform: scale(1.02); }
 
     .site-logo {
-      height: clamp(48px, 7.5vw, 68px);
+      height: 68px;
       width: auto;
       max-width: 220px;
       object-fit: contain;
@@ -93,7 +94,6 @@
 
     .brand-meta {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       gap: 0.65rem;
       margin-left: auto;
@@ -123,10 +123,9 @@
 
     .tab-nav {
       display: flex;
-      flex-wrap: wrap;
       gap: 0.35rem;
       padding-bottom: 0.25rem;
-      overflow-x: auto;
+      overflow-x: visible;
     }
 
     .tab-nav a {
@@ -200,7 +199,7 @@
     }
 
     .meeting-title {
-      font-size: clamp(1.35rem, 3vw, 1.85rem);
+      font-size: 1.85rem;
       font-weight: 800;
       color: var(--navy);
       margin-bottom: 0.25rem;
@@ -246,7 +245,7 @@
     }
 
     h1 {
-      font-size: clamp(1.75rem, 4vw, 2.35rem);
+      font-size: 2.35rem;
       font-weight: 700;
       color: var(--navy);
       letter-spacing: -0.02em;
@@ -257,7 +256,7 @@
     /* Big number hero strip */
     .stat-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 0.85rem;
       margin: 1.75rem 0 2rem;
     }
@@ -270,7 +269,7 @@
     }
 
     .stat-box .big {
-      font-size: clamp(2.25rem, 5vw, 3.25rem);
+      font-size: 2.35rem;
       font-weight: 700;
       line-height: 1;
       letter-spacing: -0.03em;
@@ -352,7 +351,7 @@
     }
 
     .priority-card .pnum {
-      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-size: 2.75rem;
       font-weight: 700;
       line-height: 1;
       color: var(--navy);
@@ -381,7 +380,7 @@
     /* Metrics grid - big numbers */
     .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 0.75rem;
     }
 
@@ -392,7 +391,7 @@
     }
 
     .metric .big {
-      font-size: clamp(1.65rem, 3.5vw, 2.35rem);
+      font-size: 2.35rem;
       font-weight: 700;
       color: var(--navy);
       line-height: 1.1;
@@ -417,7 +416,7 @@
 
     .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
       margin-top: 0.5rem;
     }
@@ -512,7 +511,7 @@
 
     .meeting-meta {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 0.65rem;
       margin-top: 1rem;
     }
@@ -613,7 +612,6 @@
 
     .legend {
       display: flex;
-      flex-wrap: wrap;
       gap: 0.75rem;
       margin-bottom: 1.25rem;
       font-size: 0.82rem;
@@ -702,32 +700,6 @@
       min-height: 6.5rem;
     }
 
-    .download-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      margin-top: 1.25rem;
-    }
-
-    .download-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.55rem 1rem;
-      background: var(--navy);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      transition: background 0.2s, transform 0.2s;
-    }
-
-    .download-btn:hover {
-      background: #163d72;
-      transform: translateY(-1px);
-    }
-
     .session-complete {
       display: inline-block;
       font-size: 0.72rem;
@@ -745,18 +717,6 @@
 
     .section-divider {
       display: none;
-    }
-
-    @media (max-width: 640px) {
-      nav.snap-dots { display: none; }
-      .brand { font-size: 0.9rem; }
-      .brand-meta { margin-left: 0; width: 100%; justify-content: space-between; }
-      .tab-nav a { font-size: 0.7rem; padding: 0.4rem 0.6rem; }
-    }
-
-    @media (max-width: 600px) {
-      .priority-card { grid-template-columns: 1fr; }
-      .priority-card .pnum { font-size: 2rem; }
     }
 
     @media print {
@@ -777,7 +737,7 @@
       }
 
       .site-header { position: static; }
-      .tab-nav, nav.snap-dots, .scroll-hint, .download-bar { display: none !important; }
+      .tab-nav, nav.snap-dots, .scroll-hint { display: none !important; }
 
       main {
         max-width: none;
@@ -882,9 +842,6 @@
       <div class="stat-box b"><div class="big">83/106</div><div class="lbl">Blue line staffing</div></div>
       <div class="stat-box c"><div class="big">$70K</div><div class="lbl">Glue line upgrade</div></div>
       <div class="stat-box d"><div class="big">~$300K</div><div class="lbl">Healthcare savings</div></div>
-    </div>
-    <div class="download-bar">
-      <a class="download-btn" href="downloads/session-7-summary.pdf" download="Arkay-Session-7-Summary-Meeting-Notes.pdf">↓ Download Session 7 Summary</a>
     </div>
   </section>
 

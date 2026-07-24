@@ -2,7 +2,30 @@ let manifest = [];
 let meetings = {};
 let currentId = null;
 let ownerFilter = "all";
+let accountabilityPerson = null;
 let searchIndex = [];
+
+const ACCOUNTABILITY_OWNER_ORDER = [
+  "Mitchell Kaneff",
+  "Josh Kaneff",
+  "Max Kaneff",
+  "Brian Hopkins",
+  "John Sheridan",
+  "Walt Shiels",
+  "Michael Dercksen",
+  "Robin Rivera",
+];
+
+const OWNER_ROLES = {
+  "Mitchell Kaneff": "Owner / Strategic Oversight",
+  "Josh Kaneff": "Sales & External Relationships",
+  "Max Kaneff": "Operations & Internal Systems",
+  "Brian Hopkins": "Operations Knowledge Transfer",
+  "John Sheridan": "Roanoke Operations (Remote)",
+  "Walt Shiels": "Legacy Building & Sales Leadership",
+  "Michael Dercksen": "CFO & Expanding Role",
+  "Robin Rivera": "HR / Talent Development (Remote)",
+};
 
 const STATUS_LABELS = {
   completed: { label: "Completed", icon: "🟢", cls: "status-completed" },
@@ -88,26 +111,114 @@ function renderStatusBadge(status) {
   return `<span class="status-badge ${s.cls}">${s.icon} ${s.label}</span>`;
 }
 
-function renderAccountabilityTable(commitments) {
-  if (!commitments.length) {
-    return `<p class="discussion-summary">No commitments recorded for this session yet.</p>`;
+function ownerSlug(name) {
+  return String(name).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+function orderedOwners(commitments) {
+  const seen = new Set();
+  const fromData = commitments.map((c) => c.owner).filter((o) => {
+    if (!o || seen.has(o)) return false;
+    seen.add(o);
+    return true;
+  });
+  const ordered = ACCOUNTABILITY_OWNER_ORDER.filter((o) => seen.has(o));
+  fromData.forEach((o) => {
+    if (!ordered.includes(o)) ordered.push(o);
+  });
+  return ordered;
+}
+
+function groupCommitmentsByOwner(commitments) {
+  const map = {};
+  commitments.forEach((c) => {
+    if (!map[c.owner]) map[c.owner] = [];
+    map[c.owner].push(c);
+  });
+  return map;
+}
+
+function renderPersonCommitmentTable(items) {
+  if (!items.length) {
+    return `<p class="discussion-summary">No prior commitments recorded for this person.</p>`;
   }
-  const rows = commitments
+  const rows = items
     .map(
       (c) =>
         `<tr>
-          <td><strong>${escapeHtml(c.owner)}</strong></td>
           <td>${escapeHtml(c.commitment)}</td>
           <td>${renderStatusBadge(c.status)}</td>
           <td>${escapeHtml(c.dueDate || "—")}</td>
+          <td class="notes-cell">${escapeHtml(c.notes || "—")}</td>
         </tr>`
     )
     .join("");
   return `<div class="table-scroll">
     <table class="data-table">
-      <thead><tr><th>Owner</th><th>Commitment</th><th>Status</th><th>Due Date</th></tr></thead>
+      <thead><tr><th>Prior Commitment</th><th>Status</th><th>Due Date</th><th>Notes</th></tr></thead>
       <tbody>${rows}</tbody>
     </table>
+  </div>`;
+}
+
+function renderPersonAccountabilityPanel(meeting, owner, items, isActive) {
+  const stats = computeAccountabilityStats(items);
+  const slug = ownerSlug(owner);
+  const role = OWNER_ROLES[owner] || "";
+  const personKpis = [
+    { value: String(stats.completed), label: "Completed", variant: "primary" },
+    { value: String(stats.open), label: "Open", variant: "warn" },
+    { value: String(stats.delayed), label: "Delayed", variant: "accent" },
+    { value: `${stats.total ? Math.round((stats.completed / stats.total) * 100) : 0}%`, label: "Done", variant: "default" },
+  ];
+  const hiddenAttr = isActive ? "" : " hidden";
+
+  return `<div class="person-panel" data-owner="${escapeHtml(owner)}" role="tabpanel"${hiddenAttr}>
+    <div class="person-header">
+      <h3 class="person-name">${escapeHtml(owner)}</h3>
+      ${role ? `<p class="person-role">${escapeHtml(role)}</p>` : ""}
+    </div>
+    <div class="person-kpis kpi-grid">${personKpis.map(renderKpiCard).join("")}</div>
+    <h4 class="person-subheading">Previous Month Commitments</h4>
+    ${renderPersonCommitmentTable(items)}
+    ${renderNotesArea(meeting.id, `accountability:${slug}:part2`, "Part 2 — What's New", "Initiatives, goals, or processes…")}
+    ${renderNotesArea(meeting.id, `accountability:${slug}:part3`, "Part 3 — New Challenges & Opportunities", "Challenges and opportunities from the review…")}
+    ${renderNotesArea(meeting.id, `accountability:${slug}:part4`, "Part 4 — Focus Areas (Next 30 Days)", "Focus areas for the next 30 days…")}
+  </div>`;
+}
+
+function renderAccountabilitySection(meeting, commitments) {
+  const byOwner = groupCommitmentsByOwner(commitments);
+  let owners = orderedOwners(commitments);
+  if (!owners.length && meeting.attendees?.length) {
+    owners = ACCOUNTABILITY_OWNER_ORDER.filter((o) => meeting.attendees.includes(o));
+    meeting.attendees.forEach((o) => {
+      if (!owners.includes(o)) owners.push(o);
+    });
+  }
+  if (!owners.length) {
+    return `<p class="discussion-summary">No accountability owners defined for this session yet.</p>`;
+  }
+
+  const active = accountabilityPerson && owners.includes(accountabilityPerson) ? accountabilityPerson : owners[0];
+
+  const tabs = owners
+    .map((owner) => {
+      const items = byOwner[owner] || [];
+      const stats = computeAccountabilityStats(items);
+      const short = owner.split(" ")[0];
+      return `<button type="button" class="person-tab${owner === active ? " active" : ""}" data-owner="${escapeHtml(owner)}" role="tab" aria-selected="${owner === active}">
+        <span class="person-tab-name">${escapeHtml(short)}</span>
+        <span class="person-tab-meta">${stats.completed}/${stats.total} done</span>
+      </button>`;
+    })
+    .join("");
+
+  const panels = owners.map((owner) => renderPersonAccountabilityPanel(meeting, owner, byOwner[owner] || [], owner === active)).join("");
+
+  return `<div class="accountability-wrap">
+    <nav class="person-tabs" aria-label="Accountability by person">${tabs}</nav>
+    <div class="person-panels">${panels}</div>
   </div>`;
 }
 
@@ -199,6 +310,25 @@ function renderActions(actions, meetingId) {
   </div>`;
 }
 
+function bindPersonTabs() {
+  const wrap = document.querySelector(".accountability-wrap");
+  if (!wrap) return;
+  wrap.querySelectorAll(".person-tab").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const owner = btn.dataset.owner;
+      accountabilityPerson = owner;
+      wrap.querySelectorAll(".person-tab").forEach((t) => {
+        const on = t.dataset.owner === owner;
+        t.classList.toggle("active", on);
+        t.setAttribute("aria-selected", on);
+      });
+      wrap.querySelectorAll(".person-panel").forEach((p) => {
+        p.hidden = p.dataset.owner !== owner;
+      });
+    });
+  });
+}
+
 function bindNotesAreas() {
   document.querySelectorAll(".notes-area").forEach((el) => {
     if (el.dataset.bound) return;
@@ -263,7 +393,7 @@ function renderDashboard(meeting) {
             <div class="accountability-kpis">
               <div class="kpi-grid">${accountabilityKpis.map(renderKpiCard).join("")}</div>
             </div>
-            ${renderAccountabilityTable(commitments)}
+            ${renderAccountabilitySection(meeting, commitments)}
           </div>
         </details>
 
@@ -305,6 +435,7 @@ function renderDashboard(meeting) {
     });
 
     bindNotesAreas();
+    bindPersonTabs();
     root.classList.remove("fade-out");
     window.scrollTo({ top: scrollY });
     syncHeaderHeight();
@@ -330,6 +461,7 @@ function selectMeeting(id, fromSearch) {
   if (!meetings[id]) return;
   currentId = id;
   ownerFilter = "all";
+  accountabilityPerson = null;
   renderMonthBar();
   renderDashboard(meetings[id]);
   const m = meetings[id];

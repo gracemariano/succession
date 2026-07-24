@@ -262,6 +262,57 @@ main { max-width: 1280px; margin: 0 auto; padding: 1rem 1.25rem 3rem; }
 
 .accountability-kpis { margin-bottom: 1rem; }
 
+.accountability-wrap { margin-top: 0.75rem; }
+.person-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.person-tab {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.55rem 0.9rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 5.5rem;
+}
+.person-tab:hover { border-color: var(--primary); color: var(--primary); }
+.person-tab.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.person-tab.active .person-tab-meta { color: rgba(255, 255, 255, 0.85); }
+.person-tab-name { line-height: 1.2; }
+.person-tab-meta { font-size: 0.72rem; font-weight: 600; color: var(--text-muted); line-height: 1.2; }
+
+.person-panels { min-height: 120px; }
+.person-panel[hidden] { display: none !important; }
+.person-header { margin-bottom: 0.85rem; }
+.person-name { font-size: 1.25rem; font-weight: 800; color: var(--primary); letter-spacing: -0.02em; }
+.person-role { font-size: 0.92rem; color: var(--text-muted); margin-top: 0.15rem; }
+.person-subheading {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 1.15rem 0 0.65rem;
+}
+.person-kpis { margin-bottom: 0.5rem; }
+.person-kpis .kpi-card { min-height: 120px; padding: 1rem 0.75rem; }
+.notes-cell { font-size: 0.88rem; color: var(--text-muted); max-width: 280px; }
+
 .table-scroll { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
 .data-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; background: #fff; }
 .data-table th, .data-table td { text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }

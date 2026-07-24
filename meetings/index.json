@@ -1,0 +1,8 @@
+[
+  { "id": "july-2026", "file": "july-2026.json", "month": "July", "year": 2026, "meetingDate": "2026-07-24", "session": null, "placeholder": true },
+  { "id": "june-2026", "file": "june-2026.json", "month": "June", "year": 2026, "meetingDate": "2026-06-23", "session": 7 },
+  { "id": "may-2026", "file": "may-2026.json", "month": "May", "year": 2026, "meetingDate": "2026-05-20", "session": 6 },
+  { "id": "april-2026", "file": "april-2026.json", "month": "April", "year": 2026, "meetingDate": "2026-04-01", "session": null, "placeholder": true },
+  { "id": "march-2026", "file": "march-2026.json", "month": "March", "year": 2026, "meetingDate": "2026-03-01", "session": null, "placeholder": true },
+  { "id": "february-2026", "file": "february-2026.json", "month": "February", "year": 2026, "meetingDate": "2026-02-01", "session": null, "placeholder": true }
+]

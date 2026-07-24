@@ -1,0 +1,561 @@
+{
+  "id": "may-2026",
+  "session": 6,
+  "title": "Succession Planning — Session 6",
+  "month": "May",
+  "year": 2026,
+  "meetingDate": "2026-05-20",
+  "subtitle": "30-Day Accountability Review",
+  "duration": "10:00 AM – 2:00 PM",
+  "location": "Southampton · Mitchell's house",
+  "attendees": [
+    "Mitchell Kaneff",
+    "Michael Dercksen",
+    "Josh Kaneff",
+    "Max Kaneff",
+    "Brian Hopkins",
+    "John Sheridan",
+    "Walt Shiels",
+    "Robin Rivera"
+  ],
+  "headerKpis": [
+    {
+      "value": "28",
+      "label": "Open Actions",
+      "variant": "warn"
+    },
+    {
+      "value": "3",
+      "label": "Completed",
+      "variant": "primary"
+    },
+    {
+      "value": "13",
+      "label": "In Progress",
+      "variant": "default"
+    },
+    {
+      "value": "0",
+      "label": "Delayed",
+      "variant": "accent"
+    }
+  ],
+  "accountability": {
+    "commitments": [
+      {
+        "owner": "John Sheridan",
+        "commitment": "48-hour locked production schedule",
+        "status": "in-progress",
+        "dueDate": "Jun 1",
+        "notes": "Rolling lock with clear exceptions; bell system go-live."
+      },
+      {
+        "owner": "John Sheridan",
+        "commitment": "Bell system installation & go-live",
+        "status": "in-progress",
+        "dueDate": "Tuesday",
+        "notes": "Toolbox briefings then facility go-live."
+      },
+      {
+        "owner": "Robin Rivera",
+        "commitment": "Overtime burnout mitigation options",
+        "status": "in-progress",
+        "dueDate": "Before June",
+        "notes": "8/12-hour and weekend rotation with John."
+      },
+      {
+        "owner": "Josh Kaneff",
+        "commitment": "Weekly cross-functional huddles",
+        "status": "in-progress",
+        "dueDate": "Next week",
+        "notes": "CS, planning, sales, imaging, structural, estimating, HR."
+      },
+      {
+        "owner": "Max Kaneff",
+        "commitment": "Smaller AI/ERP decision meeting",
+        "status": "in-progress",
+        "dueDate": "Next Tuesday",
+        "notes": "Mitchell, Max, Michael, Greg, Hector."
+      },
+      {
+        "owner": "Michael Dercksen",
+        "commitment": "Rates & standards review with Robert",
+        "status": "in-progress",
+        "dueDate": "Sep 1",
+        "notes": "First machine-rate reset in ~20 years."
+      },
+      {
+        "owner": "Michael Dercksen",
+        "commitment": "Cold foil linear-foot tracking",
+        "status": "in-progress",
+        "dueDate": "First week Jun",
+        "notes": "Go-live target first week of June."
+      },
+      {
+        "owner": "Michael Dercksen",
+        "commitment": "HSA transition to Pinnacle",
+        "status": "in-progress",
+        "dueDate": "Jul 1",
+        "notes": "Manager and employee communications."
+      },
+      {
+        "owner": "Mitchell Kaneff",
+        "commitment": "HubSpot / CRM implementation",
+        "status": "in-progress",
+        "dueDate": "Jun cycle",
+        "notes": "Josh/Max/Michael own rollout and AMS integration."
+      },
+      {
+        "owner": "Mitchell Kaneff",
+        "commitment": "May 21 in-person sales meeting",
+        "status": "completed",
+        "dueDate": "May 21",
+        "notes": "Josh ran meeting; PacSmart/QR training."
+      },
+      {
+        "owner": "Mitchell Kaneff",
+        "commitment": "Production discipline (bell system)",
+        "status": "completed",
+        "dueDate": "May 20",
+        "notes": "Bell installed and tested."
+      },
+      {
+        "owner": "Brian Hopkins",
+        "commitment": "Max Roanoke immersion planning",
+        "status": "in-progress",
+        "dueDate": "Jul 27",
+        "notes": "Glue-line tools, make-ready videos, repeat jobs."
+      },
+      {
+        "owner": "Walt Shiels",
+        "commitment": "Suzanne sales transition planning",
+        "status": "in-progress",
+        "dueDate": "Aug/Sep",
+        "notes": "Heidi conversation July."
+      },
+      {
+        "owner": "Robin Rivera",
+        "commitment": "Estimator LinkedIn posting",
+        "status": "completed",
+        "dueDate": "May 20",
+        "notes": "Posted same day as session."
+      },
+      {
+        "owner": "John Sheridan",
+        "commitment": "ESKO/Phoenix AI estimating escalation",
+        "status": "in-progress",
+        "dueDate": "This week",
+        "notes": "Escalate with senior contacts."
+      },
+      {
+        "owner": "Max Kaneff",
+        "commitment": "CERM + HighFlow all-in costs",
+        "status": "in-progress",
+        "dueDate": "Before ERP decision",
+        "notes": "All-in pricing needed."
+      }
+    ]
+  },
+  "leadershipDiscussion": {
+    "summary": "Session 6 focused on operational strain, succession execution, and leadership development. Senior leadership committed to listen more and push ownership to department managers.",
+    "bullets": [
+      "Revenue ~$6M–$7M ahead of prior year; bookings ~20% ahead YoY.",
+      "Overtime ~$60,000/week eroding profit and exhausting staff.",
+      "Next management meeting: dept leaders present; senior team listens.",
+      "Rolling 48-hour locked production schedule is central near-term experiment.",
+      "Smaller AI/ERP decision group replaces broad ERP steering meeting."
+    ]
+  },
+  "strategicDiscussion": {
+    "summary": "ERP/AI decisions, sales pipeline quality, and profitability discipline dominated strategic conversation.",
+    "bullets": [
+      "Separate streams: ERP strategy, quick wins, ESKO/Phoenix, AMS/HubSpot, automation.",
+      "Leadership does not want consultants to own strategy by default (~$125K/mo discussed).",
+      "CERM & HighFlow need all-in cost estimates before decision.",
+      "Customer selection criteria: potential, price, lead time, risk, premium fit.",
+      "HubSpot proceeds; align marketing spend with oversold capacity."
+    ]
+  },
+  "leadershipReflection": {
+    "summary": "Central tension: strong revenue and bookings, but overtime destroys work-life balance and margins.",
+    "bullets": [
+      "Burnout risk — OT → quality, attendance, retention without breaks.",
+      "Margin mix — lower-margin work blocking profitable jobs when oversold.",
+      "ERP/AI delay impacts estimating, Lauder support, forecasting, HubSpot/AMS.",
+      "Key-person gaps: estimator, stamping/embossing.",
+      "Marketing vs capacity — spend aligned with profitable strategy."
+    ]
+  },
+  "executiveSummary": [
+    {
+      "theme": "Big Wins",
+      "line": "Revenue and bookings ahead of plan",
+      "metrics": [
+        {
+          "value": "+$6–7M",
+          "label": "Revenue ahead"
+        },
+        {
+          "value": "~20%",
+          "label": "Bookings YoY"
+        },
+        {
+          "value": "145K",
+          "label": "Sheets/night"
+        }
+      ]
+    },
+    {
+      "theme": "Big Risks",
+      "line": "Overtime and oversold conditions",
+      "metrics": [
+        {
+          "value": "$60K",
+          "label": "Weekly OT"
+        },
+        {
+          "value": "82",
+          "label": "Job bags"
+        },
+        {
+          "value": "Burnout",
+          "label": "Workforce strain"
+        }
+      ]
+    },
+    {
+      "theme": "Leadership Decisions",
+      "line": "Operations and technology",
+      "metrics": [
+        {
+          "value": "48 hr",
+          "label": "Schedule lock"
+        },
+        {
+          "value": "Sep 1",
+          "label": "Rates go-live"
+        },
+        {
+          "value": "HubSpot",
+          "label": "CRM proceed"
+        }
+      ]
+    },
+    {
+      "theme": "Key Customers",
+      "line": "P&G and pipeline quality",
+      "metrics": [
+        {
+          "value": "P&G",
+          "label": "Oral-B / Femcare"
+        },
+        {
+          "value": "Olay",
+          "label": "Renewal"
+        },
+        {
+          "value": "Pipeline",
+          "label": "Quality focus"
+        }
+      ]
+    },
+    {
+      "theme": "Technology",
+      "line": "ERP/AI and ESKO urgency",
+      "metrics": [
+        {
+          "value": "~$100K",
+          "label": "ERP PM"
+        },
+        {
+          "value": "ESKO",
+          "label": "Estimating urgent"
+        },
+        {
+          "value": "AMS",
+          "label": "HubSpot integration"
+        }
+      ]
+    },
+    {
+      "theme": "Major Projects",
+      "line": "Succession and training milestones",
+      "metrics": [
+        {
+          "value": "Jul 27",
+          "label": "Roanoke immersion"
+        },
+        {
+          "value": "Q4",
+          "label": "Gordy retirement"
+        },
+        {
+          "value": "Aug/Sep",
+          "label": "Suzanne transition"
+        }
+      ]
+    }
+  ],
+  "leadershipDashboard": [
+    {
+      "value": "3",
+      "label": "Completed Commitments",
+      "variant": "primary"
+    },
+    {
+      "value": "13",
+      "label": "Open Commitments",
+      "variant": "warn"
+    },
+    {
+      "value": "0",
+      "label": "Delayed Items",
+      "variant": "accent"
+    },
+    {
+      "value": "19%",
+      "label": "Completion Rate",
+      "variant": "primary"
+    },
+    {
+      "value": "28",
+      "label": "Next Actions",
+      "variant": "default"
+    },
+    {
+      "value": "$60K",
+      "label": "Weekly OT",
+      "variant": "warn"
+    },
+    {
+      "value": "48 hr",
+      "label": "Schedule Lock",
+      "variant": "accent"
+    },
+    {
+      "value": "Sep 1",
+      "label": "Rates Go-Live",
+      "variant": "primary"
+    }
+  ],
+  "actions": [
+    {
+      "owner": "Mitchell",
+      "action": "Legal signoffs Copilot/Plaud/recording with Greg/Todd",
+      "priority": "High",
+      "dueDate": "Today",
+      "status": "Open"
+    },
+    {
+      "owner": "Mitchell",
+      "action": "Grace Williams fourth-gen narrative — final outreach",
+      "priority": "High",
+      "dueDate": "Before next review",
+      "status": "Open"
+    },
+    {
+      "owner": "Robin",
+      "action": "Post estimator opening on LinkedIn",
+      "priority": "High",
+      "dueDate": "Today",
+      "status": "Open"
+    },
+    {
+      "owner": "John",
+      "action": "Marsh McLennan / 3R proposal to Michael; confirm Anthony report",
+      "priority": "High",
+      "dueDate": "ASAP",
+      "status": "Open"
+    },
+    {
+      "owner": "John",
+      "action": "Bell system toolbox briefings; go live Tuesday",
+      "priority": "High",
+      "dueDate": "Tuesday",
+      "status": "Open"
+    },
+    {
+      "owner": "Max",
+      "action": "Smaller AI/ERP meeting; repurpose broad steering",
+      "priority": "High",
+      "dueDate": "Next Tuesday",
+      "status": "Open"
+    },
+    {
+      "owner": "Josh",
+      "action": "Launch weekly cross-functional huddle",
+      "priority": "High",
+      "dueDate": "Next week",
+      "status": "Open"
+    },
+    {
+      "owner": "John Sheridan",
+      "action": "Escalate ESKO/Phoenix AI estimating",
+      "priority": "High",
+      "dueDate": "This week",
+      "status": "Open"
+    },
+    {
+      "owner": "Josh",
+      "action": "QR/dynamic coding cost adder — email Steve",
+      "priority": "High",
+      "dueDate": "After sales meeting",
+      "status": "Open"
+    },
+    {
+      "owner": "Max",
+      "action": "ESKO/WebCenter/RDOS follow-ups",
+      "priority": "High",
+      "dueDate": "This week / next",
+      "status": "Open"
+    },
+    {
+      "owner": "John",
+      "action": "Glue-line supervisor + stamping/embossing staffing",
+      "priority": "High",
+      "dueDate": "7–10 days",
+      "status": "Open"
+    },
+    {
+      "owner": "Michael",
+      "action": "HSA transition briefing; comms with Donna",
+      "priority": "High",
+      "dueDate": "Next 10 days",
+      "status": "Open"
+    },
+    {
+      "owner": "John",
+      "action": "Management meeting agenda — dept presentations",
+      "priority": "Medium",
+      "dueDate": "June mgmt",
+      "status": "Open"
+    },
+    {
+      "owner": "John + Robin",
+      "action": "Shift/weekend rotation options",
+      "priority": "Medium",
+      "dueDate": "Before June",
+      "status": "Open"
+    },
+    {
+      "owner": "Mitchell + Michael",
+      "action": "Two annual retreats budget; facilitator options",
+      "priority": "Medium",
+      "dueDate": "June cycle",
+      "status": "Open"
+    },
+    {
+      "owner": "Josh",
+      "action": "Dark Room negotiate ~$8K–$9K/month",
+      "priority": "Medium",
+      "dueDate": "Before approval",
+      "status": "Open"
+    },
+    {
+      "owner": "Max",
+      "action": "CERM + HighFlow all-in costs",
+      "priority": "Medium",
+      "dueDate": "Before ERP decision",
+      "status": "Open"
+    },
+    {
+      "owner": "Max + Hector",
+      "action": "HubSpot / AMS integration decision",
+      "priority": "Medium",
+      "dueDate": "Before launch",
+      "status": "Open"
+    },
+    {
+      "owner": "Robin",
+      "action": "July development conversation naming",
+      "priority": "Medium",
+      "dueDate": "Before July",
+      "status": "Open"
+    },
+    {
+      "owner": "Mitchell",
+      "action": "Robotics / gluer-end palletizing monitoring",
+      "priority": "Low",
+      "dueDate": "Ongoing",
+      "status": "Open"
+    },
+    {
+      "owner": "Max",
+      "action": "Price negotiations; Roanoke immersion",
+      "priority": "Low",
+      "dueDate": "30 days",
+      "status": "Open"
+    },
+    {
+      "owner": "Robin",
+      "action": "Career-path docs; exit interviews; Dale Carnegie",
+      "priority": "Low",
+      "dueDate": "30 days",
+      "status": "Open"
+    },
+    {
+      "owner": "Robin",
+      "action": "Public speaking course Josh & Max",
+      "priority": "Low",
+      "dueDate": "Q4–Q1",
+      "status": "Open"
+    },
+    {
+      "owner": "Michael",
+      "action": "Bank appraisal → financing recommendation",
+      "priority": "Low",
+      "dueDate": "2–3 weeks",
+      "status": "Open"
+    },
+    {
+      "owner": "Michael",
+      "action": "Rates & standards with Robert",
+      "priority": "Low",
+      "dueDate": "Sep 1",
+      "status": "Open"
+    },
+    {
+      "owner": "Michael",
+      "action": "401(k) audit; healthcare renewal",
+      "priority": "Low",
+      "dueDate": "30 days",
+      "status": "Open"
+    },
+    {
+      "owner": "Brian + Max + John",
+      "action": "July 27 Roanoke week planning",
+      "priority": "Low",
+      "dueDate": "Before July 27",
+      "status": "Open"
+    },
+    {
+      "owner": "Walt",
+      "action": "Heidi / Suzanne transition; P&G pipeline",
+      "priority": "Low",
+      "dueDate": "July / ongoing",
+      "status": "Open"
+    }
+  ],
+  "searchKeywords": [
+    "AI",
+    "ERP",
+    "ESKO",
+    "Phoenix",
+    "HubSpot",
+    "accountability",
+    "succession",
+    "overtime",
+    "48-hour",
+    "bell system",
+    "rates",
+    "P&G",
+    "Roanoke",
+    "hiring",
+    "estimator",
+    "automation",
+    "Michael",
+    "Mitchell",
+    "Max",
+    "Josh"
+  ]
+}

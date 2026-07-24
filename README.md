@@ -1,21 +1,35 @@
-# Arkay Succession Planning — Session 6
+# Arkay Succession Planning — Executive Dashboard
 
-Scroll-stopping summary site for **Succession Planning Session 6** (May 20, 2026).
+Executive leadership dashboard for **Succession Planning** sessions.
 
 ## View locally
 
-Open `index.html` in a browser, or:
-
 ```bash
+cd /Users/gracenicolemariano/Documents/succession
 python3 -m http.server 8080
 ```
 
-Then visit http://localhost:8080
+Open [http://localhost:8080](http://localhost:8080)
 
 ## GitHub Pages
 
-1. Open [repository Settings → Pages](https://github.com/gracemariano/succession/settings/pages)
-2. **Build and deployment** → Source: **Deploy from a branch**
-3. Branch: **main** / **/ (root)** → Save
+Live: **https://gracemariano.github.io/succession/**
 
-Live site: **https://gracemariano.github.io/succession/**
+## Adding a new session
+
+1. Copy `meetings/june-2026.json` to `meetings/{month}-{year}.json`
+2. Update all fields (commitments, discussions, actions, KPIs)
+3. Add an entry to `meetings/index.json` (newest `meetingDate` first)
+4. Push to `main` — GitHub Pages deploys automatically
+
+## Structure
+
+| File | Purpose |
+|------|---------|
+| `index.html` | Dashboard shell |
+| `styles.css` | Arkay blue executive styling |
+| `app.js` | Month switching, search, rendering |
+| `meetings/index.json` | Session manifest |
+| `meetings/*.json` | One file per session |
+
+Meeting notes typed in the browser are saved to **localStorage** per session.

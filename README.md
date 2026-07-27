@@ -1,6 +1,6 @@
 # Arkay Succession Planning
 
-Scrollable succession site for **Session 6 (May 20)** and **Session 7 (June 23, 2026)**.
+Scrollable succession meeting notes for **Session 6 (May 20)** and **Session 7 (June 23, 2026)**.
 
 ## View locally
 
@@ -18,6 +18,5 @@ Live: **https://gracemariano.github.io/succession/**
 ## Navigation
 
 - **Month:** Latest · June | May (June loads first)
-- **View:** Meeting Notes | Prep Checklist
 
-Each month has its own meeting notes and per-person prep checklist (Parts 1–4).
+Each month shows its meeting notes — hero, summary, action items, and related sections.

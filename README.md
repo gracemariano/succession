@@ -1,6 +1,6 @@
 # Arkay Succession Planning
 
-Scrollable succession meeting notes for **Session 6 (May 20)** and **Session 7 (June 23, 2026)**.
+Scrollable succession meeting notes for **Session 6 (May 20)**, **Session 7 (June 23)**, and **Session 8 (July 28, 2026)**.
 
 ## View locally
 
@@ -17,6 +17,6 @@ Live: **https://gracemariano.github.io/succession/**
 
 ## Navigation
 
-- **Month:** Latest · June | May (June loads first)
+- **Month:** Latest · July | June | May (July loads first)
 
-Each month shows its meeting notes — hero, summary, action items, and related sections.
+Each month shows its meeting notes. Session 8 follows John O'Connor's notes format: Session at a Glance, Core Teachings & Frameworks, Group Themes & Patterns, Powerful Questions, Practices & Homework, References, and Closing Reflection.
